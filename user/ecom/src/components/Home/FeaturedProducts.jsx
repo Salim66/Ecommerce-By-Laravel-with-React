@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { Container, Row, Col, Card } from 'react-bootstrap'
+import React, { Component } from 'react';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 
-export class FeaturedProducts extends Component {
+class FeaturedProducts extends Component {
   render() {
     return (
       <>

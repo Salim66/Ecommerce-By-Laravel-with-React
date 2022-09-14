@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Categories from '../components/Home/Categories';
 import FeaturedProducts from '../components/Home/FeaturedProducts';
 
 export class HomePage extends Component {
@@ -6,6 +7,7 @@ export class HomePage extends Component {
     return (
       <>
         <FeaturedProducts />
+        <Categories />
       </>
     )
   }
