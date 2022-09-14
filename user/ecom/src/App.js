@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { BrowserRouter } from 'react-router-dom';
+import AppRoute from './routes/AppRoute';
 
 class App extends Component {
   render() {
     return (
       <>
-        <Button variant="info" >Click Me </Button>
-        <Button variant="primary"><i className='fa fa-home'></i></Button>
+        <BrowserRouter>
+          <AppRoute />
+        </BrowserRouter>
       </>
     )
   }
