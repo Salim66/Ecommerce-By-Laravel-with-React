@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import FeaturedProducts from '../components/Home/FeaturedProducts';
 
 export class HomePage extends Component {
   render() {
     return (
-      <div>This is Home page Component</div>
+      <>
+        <FeaturedProducts />
+      </>
     )
   }
 }
