@@ -5,11 +5,26 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 class NewArrival extends Component {
+
+  constructor(props) {
+    super(props);
+    this.next = this.next.bind(this);
+    this.previous = this.previous.bind(this);
+  }
+
+  next(){
+    this.slider.slickNext();
+  }
+
+  previous(){
+    this.slider.slickPrev();
+  }
+
   render() {
 
     var settings = {
       dots: false,
-      infinite: false,
+      infinite: true,
       speed: 500,
       autoplay: true,
       autoplaySpeed: 3000,
@@ -50,12 +65,15 @@ class NewArrival extends Component {
         <Container className='text-center' fluid={true}>
 
           <div className='section-title text-center mb-55'>
-            <h2>NEW ARRIVAL</h2>
+            <h2>NEW ARRIVAL &nbsp;
+              <a className='btn btn-sm ml-2 site-btn' onClick={ this.previous }><i className='fa fa-angle-left'></i></a>&nbsp;
+              <a className='btn btn-sm ml-2 site-btn' onClick={ this.next }><i className='fa fa-angle-right'></i></a>
+            </h2>
             <p>Some of Our Exclusive Collection, You May Like</p>
           </div>
 
           <Row>
-            <Slider {...settings}>
+            <Slider ref={ c => (this.slider = c) } {...settings}>
               <div>
                 <Card className="image-box card">
                   <img className='center' src="https://rukminim1.flixcart.com/image/832/832/krjjde80/watch/c/o/e/7088-silver-hmtr-original-imag5b9qe7xhc4jz.jpeg?q=70" alt="product-image" />
