@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/easyshop.png';
+import MegaMenuMobile from '../Home/MegaMenuMobile';
 
 export class NavMenuMobile extends Component {
 
@@ -50,10 +51,7 @@ export class NavMenuMobile extends Component {
           </Container>
 
           <div className={ this.state.sideNavState }>
-            <hr className='w-80' />
-            <div className="list-group">
-              <a href="#" className='list-group-item nav-itemmenu list-group-item-action'><i className='fa fa-home mr-2'> Home </i></a>
-            </div>
+            <MegaMenuMobile />
           </div>
 
           <div onClick={ this.contentOverlayClickHandler } className={ this.state.contentOverState }>
