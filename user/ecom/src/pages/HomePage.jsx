@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NavMenuDesktop from '../components/Common/NavMenuDesktop';
+import NavMenuMobile from '../components/Common/NavMenuMobile';
 import Categories from '../components/Home/Categories';
 import Collection from '../components/Home/Collection';
 import FeaturedProducts from '../components/Home/FeaturedProducts';
@@ -10,7 +11,8 @@ export class HomePage extends Component {
   render() {
     return (
       <>
-        <NavMenuDesktop />
+        {/* <NavMenuDesktop /> */}
+        <NavMenuMobile />
         <HomeTop />
         <FeaturedProducts />
         <NewArrival />
