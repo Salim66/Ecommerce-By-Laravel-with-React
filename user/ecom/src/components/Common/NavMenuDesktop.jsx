@@ -2,8 +2,38 @@ import React, { Component } from 'react'
 import { Navbar, Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/easyshop.png';
+import MegaMenuAll from '../Home/MegaMenuAll';
 
 export class NavMenuDesktop extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      sideNavState: "sideNavClose",
+      contentOverState: "ContentOverlayClose"
+    }
+  }
+
+
+  menuBarClickHandler = () => {
+    this.sideNavOpenClose();
+  }
+
+  contentOverlayClickHandler = () => {
+    this.sideNavOpenClose();
+  }
+
+  sideNavOpenClose = () => {
+    let sideNavState = this.state.sideNavState;
+    let contentOverState = this.state.contentOverState;
+
+    if(sideNavState === "sideNavOpen"){
+      this.setState({ sideNavState: "sideNavClose", contentOverState: "ContentOverlayClose" });
+    }else {
+      this.setState({ sideNavState: "sideNavOpen", contentOverState: "ContentOverlayOpen" });
+    }
+  }
+
   render() {
     return (
       <>
@@ -13,6 +43,7 @@ export class NavMenuDesktop extends Component {
               <Row>
 
                 <Col xl={4} lg={4} md={4} sm={12} xm={12}>
+                  <Button type="button" onClick={ this.menuBarClickHandler } className='btn'><i className='fa fa-bars'></i></Button>
                   <Link to='/'><img className='nav-logo' src={Logo} alt="easylogo" /></Link>
                 </Col>
 
@@ -32,6 +63,16 @@ export class NavMenuDesktop extends Component {
                 
               </Row>
             </Container>
+
+            
+            <div className={ this.state.sideNavState }>
+              <MegaMenuAll />
+            </div>
+
+            <div onClick={ this.contentOverlayClickHandler } className={ this.state.contentOverState }>
+
+            </div>
+
           </Navbar>
         </div>
       </>
