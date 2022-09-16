@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class FeaturedProducts extends Component {
   render() {
@@ -15,13 +16,15 @@ class FeaturedProducts extends Component {
           <Row>
 
             <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-              <Card className="image-box card">
-                <img className='center' src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/b/o/n/-original-imagg3myvj6f3pez.jpeg?q=70" alt="product-image" />
-                <Card.Body>
-                  <p className='product-name-on-card'>Realme C30s (Stripe Blue, 32 GB)</p>
-                  <p className='product-price-on-card'>Price: $100</p>
-                </Card.Body>
-              </Card>
+              <Link to='/productdetails'>
+                <Card className="image-box card">
+                  <img className='center' src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/b/o/n/-original-imagg3myvj6f3pez.jpeg?q=70" alt="product-image" />
+                  <Card.Body>
+                    <p className='product-name-on-card'>Realme C30s (Stripe Blue, 32 GB)</p>
+                    <p className='product-price-on-card'>Price: $100</p>
+                  </Card.Body>
+                </Card>
+              </Link>
             </Col>
             <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
               <Card className="image-box card">
