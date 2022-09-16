@@ -5,6 +5,7 @@ import FooterMobile from '../components/Common/FooterMobile';
 import NavMenuDesktop from '../components/Common/NavMenuDesktop';
 import NavMenuMobile from '../components/Common/NavMenuMobile';
 import ProductDetails from '../components/ProductDetails/ProductDetails';
+import SuggestedProduct from '../components/ProductDetails/SuggestedProduct';
 
 class ProductDetailsPage extends Component {
         
@@ -23,6 +24,7 @@ class ProductDetailsPage extends Component {
             </div>
             
             <ProductDetails />
+            <SuggestedProduct />
 
             <div className='desktop'>
             <FooterDesktop />
