@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Apple from '../../assets/images/apple.png';
+import Google from '../../assets/images/google.png';
 
 export class FooterDesktop extends Component {
   render() {
@@ -21,15 +24,32 @@ export class FooterDesktop extends Component {
               </Col>
               <Col className='p-2' lg={3} md={3} sm={6} xs={12}>
                 <h5 className='footer-menu-title'>THE COMPANY</h5>
+                <Link className='footer-link' to='/about-us'>About Us</Link><br/>
+                <Link className='footer-link' to='/company-profile'>Company Profile</Link><br/>
+                <Link className='footer-link' to='/contact-us'>Contact Us</Link><br/>
               </Col>
               <Col className='p-2' lg={3} md={3} sm={6} xs={12}>
                 <h5 className='footer-menu-title'>MORE INFO</h5>
+                <Link className='footer-link' to='/about-us'>How To Purchase</Link><br/>
+                <Link className='footer-link' to='/company-profile'>Privacy Policy</Link><br/>
+                <Link className='footer-link' to='/contact-us'>Refund Policy</Link><br/>
               </Col>
               <Col className='p-2' lg={3} md={3} sm={6} xs={12}>
                 <h5 className='footer-menu-title'>DOWNLOAD APPS</h5>
+                <a href="#"><img src={Apple} alt="" /></a>
+                <a href="#"><img className='mt-2' src={Google} alt="" /></a>
               </Col>
             </Row>
           </Container>
+
+          <Container fluid={'true'} className='bg-dark m-0 pt-3 pb-1 text-center'>
+            <Container>
+              <Row>
+                <h6 className="text-white">© Copyright 2022 by Easy Shop, All Rights Reserved</h6>
+              </Row>
+            </Container>
+          </Container>
+
         </div>
       </>
     )
