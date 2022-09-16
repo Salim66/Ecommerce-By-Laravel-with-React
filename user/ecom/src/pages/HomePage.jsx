@@ -11,6 +11,10 @@ import HomeTopMobile from '../components/Home/HomeTopMobile';
 import NewArrival from '../components/Home/NewArrival';
 
 export class HomePage extends Component {
+  componentDidMount(){
+      window.scroll(0,0);
+  }
+
   render() {
     return (
       <>
