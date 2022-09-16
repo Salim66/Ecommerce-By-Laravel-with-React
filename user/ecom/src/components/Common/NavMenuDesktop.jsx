@@ -58,7 +58,7 @@ export class NavMenuDesktop extends Component {
                   <Link to='/' className='btn'><i className='fa fa-heart h4'></i><sup><span className='badge text-white bg-danger'>5</span></sup></Link>
                   <Link to='/' className='btn'><i className='fa fa-bell h4'></i><sup><span className='badge text-white bg-danger'>5</span></sup></Link>
                   <a href="#" className='btn'><i className='fa fa-mobile-alt h4'></i></a>
-                  <Link to='/' className='btn h4'>LOGIN</Link>
+                  <Link to='/login' className='btn h4'>LOGIN</Link>
                   <Button type="button" className='cart-btn'><i className='fa fa-shopping-cart'></i> 3 Items </Button>
                 </Col>
                 
