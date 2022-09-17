@@ -15,7 +15,7 @@ class Cart extends Component {
                         <Card.Body>
                         <Row>
                                 <Col md={3} lg={3} sm={6} xs={6}>
-                                    <img className="w-100 h-100" src={Product1} />
+                                    <img className="cart-product-img" src={Product1} />
                                 </Col>
 
                                 <Col md={6} lg={6} sm={6} xs={6}>
@@ -42,7 +42,7 @@ class Cart extends Component {
                         <Card.Body>
                         <Row>
                                 <Col md={3} lg={3} sm={6} xs={6}>
-                                    <img className="w-100 h-100" src={Product1} />
+                                    <img className="cart-product-img" src={Product1} />
                                 </Col>
 
                                 <Col md={6} lg={6} sm={6} xs={6}>
@@ -68,7 +68,7 @@ class Cart extends Component {
                         <Card.Body>
                         <Row>
                                 <Col md={3} lg={3} sm={6} xs={6}>
-                                    <img className="w-100 h-100" src={Product1} />
+                                    <img className="cart-product-img" src={Product1} />
                                 </Col>
 
                                 <Col md={6} lg={6} sm={6} xs={6}>
@@ -95,7 +95,7 @@ class Cart extends Component {
                         <Card.Body>
                         <Row>
                                 <Col md={3} lg={3} sm={6} xs={6}>
-                                    <img className="w-100 h-100" src={Product1} />
+                                    <img className="cart-product-img" src="https://rukminim1.flixcart.com/image/416/416/l0tweq80/mobile/x/f/u/-original-imagcgtghym8theg.jpeg?q=70" />
                                 </Col>
 
                                 <Col md={6} lg={6} sm={6} xs={6}>
@@ -109,6 +109,24 @@ class Cart extends Component {
                                 <Button className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
 
                                 </Col>
+                        </Row>              
+                        </Card.Body>               
+                    </Card>
+                </Col> 
+
+                {/* Checkout and Total Quantity, Price */}
+                <Col className="p-1" lg={12} md={12} sm={12} xs={12} >
+                    <Card >                
+                        <Card.Body>
+                        <Row>
+                            <Col md={12} lg={12} sm={12} xs={12}>
+                                <h5>Total Quantity = 5</h5>
+                                <h5>Total Price = 5000$</h5>
+                            </Col>
+
+                            <Col md={3} lg={3} sm={12} xs={12}>
+                                <Button className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Checkout </Button>
+                            </Col>
                         </Row>              
                         </Card.Body>               
                     </Card>
