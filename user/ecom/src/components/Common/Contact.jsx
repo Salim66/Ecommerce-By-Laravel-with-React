@@ -23,6 +23,11 @@ class Contact extends Component {
     // handle contact form
     handleContactForm = (e) => {
         e.preventDefault();
+
+        // submit button
+        let sendBtn = document.getElementById('sendBtn');
+        // contact form
+        let contactForm = document.getElementById('contactForm');
         
         if(!this.state.name){
             alert('Name field is required!');
@@ -34,24 +39,28 @@ class Contact extends Component {
             alert('Invlaid Name');
         }else {
 
+            sendBtn.innerHTML = "Sending...";
+
             axios.post(AppURL.postContact, this.state)
             .then( res => {
                 if(res.status == 201){
 
+                    alert('Message send successfully :)');
                     this.setState({
                         name: '',
-                        email: '',
-                        message: ''
+                        email: ''
                     });
-
-                    alert('Message send successfully :)');
+                    contactForm.reset();
+                    sendBtn.innerHTML = "Send";
 
                 }else {
                     alert("Error");
+                    sendBtn.innerHTML = "Send";
                 }
             })
             .catch( error => {
                 alert(error);
+                sendBtn.innerHTML = "Send";
             })
 
         }
@@ -65,14 +74,14 @@ class Contact extends Component {
                 <Col className='shadow-sm bg-white mt-2' lg={12} md={12} sm={12} xs={12}>
                     <Row className='text-center'>
                         <Col lg={6} md={6} sm={12} s={12}>
-                            <Form onSubmit={ this.handleContactForm } className="onboardForm">
+                            <Form id="contactForm" onSubmit={ this.handleContactForm } className="onboardForm">
                                 <h4>CONTACT WITH US</h4>
                                 <h6>Please contact with us</h6>
                                 <input type="text" className='form-control m-2' name="name" placeholder='Enter Your Name' onChange={ this.handleContactInput } value={this.state.name} />
                                 <input type="email" className='form-control m-2' name="email" placeholder='Enter Email Address' onChange={ this.handleContactInput } value={this.state.email} />
                                 <textarea className='form-control m-2' name="message" placeholder='Enter Your Message'cols="30" rows="5" onChange={ this.handleContactInput }></textarea>
 
-                                <Button type="submit" className='btn btn-block m-2 site-btn-login'>Send</Button>
+                                <Button id="sendBtn" type="submit" className='btn btn-block m-2 site-btn-login'>Send</Button>
                             </Form>
                         </Col>
                         <Col className='m-0 p-0 desktop' lg={6} md={6} sm={12} s={12}><br/><br/>
