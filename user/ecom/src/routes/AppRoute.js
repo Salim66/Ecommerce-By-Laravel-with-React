@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import CartPage from '../pages/CartPage';
 import ContactPage from '../pages/ContactPage';
 import FavouritePage from '../pages/FavouritePage';
 import HomePage from '../pages/HomePage';
@@ -25,6 +26,7 @@ export class AppRoute extends Component {
             <Route path="/productdetails" element={ <ProductDetailsPage /> } />
             <Route path="/notification" element={ <NotificationPage /> } />
             <Route path="/favourite" element={ <FavouritePage /> } />
+            <Route path="/cart" element={ <CartPage /> } />
         </Routes>
       </>
     )
