@@ -3,6 +3,9 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import Validation from '../../validation';
 import axios from 'axios';
 import AppURL from '../../api/AppURL';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 class Contact extends Component {
 
@@ -30,13 +33,13 @@ class Contact extends Component {
         let contactForm = document.getElementById('contactForm');
         
         if(!this.state.name){
-            alert('Name field is required!');
+            toast.error('Name field is required!');
         }else if(!this.state.email){
-            alert('Email field is required!');
+            toast.error('Email field is required!');
         }else if(!this.state.message) {
-            alert('Message field is required!');
+            toast.error('Message field is required!');
         }else if(!(Validation.NameRegex).test(this.state.name)){
-            alert('Invlaid Name');
+            toast.error('Invlaid Name');
         }else {
 
             sendBtn.innerHTML = "Sending...";
@@ -45,7 +48,7 @@ class Contact extends Component {
             .then( res => {
                 if(res.status == 201){
 
-                    alert('Message send successfully :)');
+                    toast.success('Message send successfully :)');
                     this.setState({
                         name: '',
                         email: ''
@@ -54,12 +57,12 @@ class Contact extends Component {
                     sendBtn.innerHTML = "Send";
 
                 }else {
-                    alert("Error");
+                    toast.error("Error");
                     sendBtn.innerHTML = "Send";
                 }
             })
             .catch( error => {
-                alert(error);
+                toast.error(error);
                 sendBtn.innerHTML = "Send";
             })
 
@@ -94,6 +97,7 @@ class Contact extends Component {
                     </Row>
                 </Col>
             </Row>
+            <ToastContainer />
         </Container>
     )
   }
