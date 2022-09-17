@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import Validation from '../../validation';
+import axios from 'axios';
+import AppURL from '../../api/AppURL';
 
 class Contact extends Component {
 
@@ -20,7 +23,39 @@ class Contact extends Component {
     // handle contact form
     handleContactForm = (e) => {
         e.preventDefault();
-        alert("Done");
+        
+        if(!this.state.name){
+            alert('Name field is required!');
+        }else if(!this.state.email){
+            alert('Email field is required!');
+        }else if(!this.state.message) {
+            alert('Message field is required!');
+        }else if(!(Validation.NameRegex).test(this.state.name)){
+            alert('Invlaid Name');
+        }else {
+
+            axios.post(AppURL.postContact, this.state)
+            .then( res => {
+                if(res.status == 201){
+
+                    this.setState({
+                        name: '',
+                        email: '',
+                        message: ''
+                    });
+
+                    alert('Message send successfully :)');
+
+                }else {
+                    alert("Error");
+                }
+            })
+            .catch( error => {
+                alert(error);
+            })
+
+        }
+
     }
 
   render() {
@@ -34,8 +69,8 @@ class Contact extends Component {
                                 <h4>CONTACT WITH US</h4>
                                 <h6>Please contact with us</h6>
                                 <input type="text" className='form-control m-2' name="name" placeholder='Enter Your Name' onChange={ this.handleContactInput } value={this.state.name} />
-                                <input type="text" className='form-control m-2' name="email" placeholder='Enter Email Address' onChange={ this.handleContactInput } value={this.state.email} />
-                                <textarea className='form-control m-2' name="message" placeholder='Enter Your Message'cols="30" rows="5" onChange={ this.handleContactInput }>{ this.state.message }</textarea>
+                                <input type="email" className='form-control m-2' name="email" placeholder='Enter Email Address' onChange={ this.handleContactInput } value={this.state.email} />
+                                <textarea className='form-control m-2' name="message" placeholder='Enter Your Message'cols="30" rows="5" onChange={ this.handleContactInput }></textarea>
 
                                 <Button type="submit" className='btn btn-block m-2 site-btn-login'>Send</Button>
                             </Form>
