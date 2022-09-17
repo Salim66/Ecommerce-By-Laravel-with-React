@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\VisitorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -12,4 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 // get website visitor route
 Route::get('/get-visitor', [VisitorController::class, 'getVisitorDetails']);
+
+// post contact store route
+Route::post('/post-contact', [ContactController::class, 'getPostContact']);
 
