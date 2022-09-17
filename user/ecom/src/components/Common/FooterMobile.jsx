@@ -26,6 +26,9 @@ export class FooterMobile extends Component {
                 <h5 className='footer-menu-title'>DOWNLOAD APPS</h5>
                 <a href="#"><img src={Apple} alt="" /></a>
                 <a href="#"><img className='mt-2' src={Google} alt="" /></a>
+                <br/>
+                Choose Your Language 
+                <div id='google_translate_element'></div>
               </Col>
             </Row>
           </Container>
