@@ -3,6 +3,7 @@ import { Navbar, Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/easyshop.png';
 import MegaMenuAll from '../Home/MegaMenuAll';
+import Bars from '../../assets/images/bars.png';
 
 export class NavMenuDesktop extends Component {
 
@@ -43,7 +44,7 @@ export class NavMenuDesktop extends Component {
               <Row>
 
                 <Col xl={4} lg={4} md={4} sm={12} xm={12}>
-                  <Button type="button" onClick={ this.menuBarClickHandler } className='btn'><i className='fa fa-bars'></i></Button>
+                  <img onClick={ this.menuBarClickHandler } src={Bars} className='bar-img' alt="Bars" />
                   <Link to='/'><img className='nav-logo' src={Logo} alt="easylogo" /></Link>
                 </Col>
 
