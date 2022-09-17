@@ -55,7 +55,7 @@ export class NavMenuDesktop extends Component {
                 </Col>
 
                 <Col className='p-1 mt-1' xl={4} lg={4} md={4} sm={12} xm={12}>
-                  <Link to='/' className='btn'><i className='fa fa-heart h4'></i><sup><span className='badge text-white bg-danger'>5</span></sup></Link>
+                  <Link to='/favourite' className='btn'><i className='fa fa-heart h4'></i><sup><span className='badge text-white bg-danger'>5</span></sup></Link>
                   <Link to='/notification' className='btn'><i className='fa fa-bell h4'></i><sup><span className='badge text-white bg-danger'>5</span></sup></Link>
                   <a href="#" className='btn'><i className='fa fa-mobile-alt h4'></i></a>
                   <Link to='/login' className='btn h4'>LOGIN</Link>
