@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AppURL from '../api/AppURL';
 import FooterDesktop from '../components/Common/FooterDesktop';
 import FooterMobile from '../components/Common/FooterMobile';
 import NavMenuDesktop from '../components/Common/NavMenuDesktop';
@@ -9,10 +10,18 @@ import FeaturedProducts from '../components/Home/FeaturedProducts';
 import HomeTop from '../components/Home/HomeTop';
 import HomeTopMobile from '../components/Home/HomeTopMobile';
 import NewArrival from '../components/Home/NewArrival';
+import axios from 'axios';
 
 export class HomePage extends Component {
+  
   componentDidMount(){
       window.scroll(0,0);
+      this.getVisitorDetails();
+  }
+
+  // get visitor details method
+  getVisitorDetails = () => {
+    axios.get(AppURL.visitorDetails).then().catch();
   }
 
   render() {
