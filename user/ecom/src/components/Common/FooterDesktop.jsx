@@ -24,7 +24,7 @@ export class FooterDesktop extends Component {
               </Col>
               <Col className='p-2' lg={3} md={3} sm={6} xs={12}>
                 <h5 className='footer-menu-title'>THE COMPANY</h5>
-                <Link className='footer-link' to='/about-us'>About Us</Link><br/>
+                <Link className='footer-link' to='/about'>About Us</Link><br/>
                 <Link className='footer-link' to='/company-profile'>Company Profile</Link><br/>
                 <Link className='footer-link' to='/contact'>Contact Us</Link><br/>
               </Col>

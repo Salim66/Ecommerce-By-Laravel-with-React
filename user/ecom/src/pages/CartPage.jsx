@@ -14,23 +14,21 @@ class CartPage extends Component {
   render() {
     return (
       <>
-        <>
-            <div className='desktop'>
-            <NavMenuDesktop />
-            </div>
-            <div className='mobile'>
-            <NavMenuMobile />
-            </div>
-            
-            <Cart />
+          <div className='desktop'>
+          <NavMenuDesktop />
+          </div>
+          <div className='mobile'>
+          <NavMenuMobile />
+          </div>
+          
+          <Cart />
 
-            <div className='desktop'>
-            <FooterDesktop />
-            </div>        
-            <div className='mobile'>
-            <FooterMobile />
-            </div>        
-        </>
+          <div className='desktop'>
+          <FooterDesktop />
+          </div>        
+          <div className='mobile'>
+          <FooterMobile />
+          </div>        
       </>
     )
   }
