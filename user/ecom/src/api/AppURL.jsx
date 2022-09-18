@@ -6,6 +6,7 @@ class AppURL {
     static visitorDetails = this.baseURL+"/get-visitor";
     static postContact = this.baseURL+"/post-contact";
     static AllSiteInfo = this.baseURL+"/get-site-info";
+    static AllCategoryDetails = this.baseURL+"/all-category";
 }
 
 // export default AppURL
