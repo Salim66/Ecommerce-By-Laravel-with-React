@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\Admin\VisitorController;
@@ -20,4 +21,7 @@ Route::post('/post-contact', [ContactController::class, 'getPostContact']);
 
 // site info get route
 Route::get('/get-site-info', [SiteInfoController::class, 'getSiteInfo']);
+
+// get all category route
+Route::get('/all-category', [CategoryController::class, 'allCategory']);
 
