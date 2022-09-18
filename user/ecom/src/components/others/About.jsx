@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import AppURL from '../../api/AppURL';
+import parse from 'html-react-parser';
+
 
 class About extends Component {
 
@@ -32,7 +34,7 @@ class About extends Component {
                 <Col className='shadow-sm bg-white mt-2' lg={12} md={12} sm={12} xs={12}>
                     <h4 className='section-title-login'>About Us</h4>
                     <p className="section-title-contact">
-                        { this.state.about }
+                        { parse(this.state.about) }
                     </p>
                 </Col>
             </Row>
