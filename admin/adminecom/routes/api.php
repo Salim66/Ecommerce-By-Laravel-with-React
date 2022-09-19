@@ -29,3 +29,9 @@ Route::get('/all-category', [CategoryController::class, 'allCategory']);
 // get all product list by remark route
 Route::get('/product-list-by-remark/{remark}', [ProductListController::class, 'productListByRemark']);
 
+// get all product list by category route
+Route::get('/product-list-by-category/{category}', [ProductListController::class, 'productListByCategory']);
+
+// get all product list by subcategory route
+Route::get('/product-list-by-subcategory/{category}/{subcategory}', [ProductListController::class, 'productListBySubCategory']);
+
