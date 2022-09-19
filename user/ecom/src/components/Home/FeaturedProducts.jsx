@@ -43,7 +43,7 @@ class FeaturedProducts extends Component {
             {
               featured_data.map((data, i) => {
                 if(data.special_price == 'na'){
-                  return <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
+                  return <Col className="p-1" key={i.toString()} xl={2} lg={2} md={2} sm={4} xs={6}>
                     <Link to='/productdetails'>
                       <Card className="image-box card">
                         <img className='center' src={ data.image } alt="product-image" />
@@ -55,7 +55,7 @@ class FeaturedProducts extends Component {
                     </Link>
                   </Col>
                 }else {
-                  return <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
+                  return <Col className="p-1" key={i.toString()} xl={2} lg={2} md={2} sm={4} xs={6}>
                     <Link to='/productdetails'>
                       <Card className="image-box card">
                         <img className='center' src={ data.image } alt="product-image" />
