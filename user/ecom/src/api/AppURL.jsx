@@ -7,6 +7,18 @@ class AppURL {
     static postContact = this.baseURL+"/post-contact";
     static AllSiteInfo = this.baseURL+"/get-site-info";
     static AllCategoryDetails = this.baseURL+"/all-category";
+
+    static productListByRemark(remark){
+        return this.baseURL+"/product-list-by-remark/"+remark;
+    }
+
+    static productListByCategory(category){
+        return this.baseURL+"/product-list-by-category/"+category;
+    }
+
+    static productListBySubCategory(category, subcategory){
+        return this.baseURL+"/product-list-by-subcategory/"+category+"/"+subcategory;
+    }
 }
 
 // export default AppURL
