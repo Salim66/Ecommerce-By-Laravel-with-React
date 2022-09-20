@@ -9,6 +9,7 @@ import NotificationPage from '../pages/NotificationPage';
 import PrivacyPage from '../pages/PrivacyPage';
 import ProductCategoryPage from '../pages/ProductCategoryPage';
 import ProductDetailsPage from '../pages/ProductDetailsPage';
+import ProductSubCategoryPage from '../pages/ProductSubCategoryPage';
 import PurchasePage from '../pages/PurchasePage';
 import RefundPage from '../pages/RefundPage';
 import UserLoginPage from '../pages/UserLoginPage';
@@ -32,6 +33,7 @@ export class AppRoute extends Component {
             <Route path="/favourite" element={ <FavouritePage /> } />
             <Route path="/cart" element={ <CartPage /> } />
             <Route path="/productcategory/:category" element={ <ProductCategoryPage /> } />
+            <Route path="/productsubcategory/:category/:subcategory" element={ <ProductSubCategoryPage /> } />
         </Routes>
       </>
     )
