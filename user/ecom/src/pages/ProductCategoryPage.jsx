@@ -39,7 +39,7 @@ const ProductCategoryPage = () => {
             <NavMenuMobile />
             </div>
             
-            <Category productData={productData} />
+            <Category productData={productData} category={params.category} />
 
             <div className='desktop'>
             <FooterDesktop />
