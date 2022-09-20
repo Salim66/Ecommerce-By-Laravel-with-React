@@ -10,7 +10,8 @@ class HomeTop extends Component {
   constructor(){
     super();
     this.state = {
-      catList : []
+      catList : [],
+      sliderData: []
     }
   }
 
@@ -18,6 +19,14 @@ class HomeTop extends Component {
     axios.get(AppURL.AllCategoryDetails)
     .then(res => {
       this.setState({ catList: res.data });
+    })
+    .catch(error => {
+      console.log('error');
+    })
+
+    axios.get(AppURL.AllSlider)
+    .then(res => {
+      this.setState({ sliderData: res.data });
     })
     .catch(error => {
       console.log('error');
@@ -33,7 +42,7 @@ class HomeTop extends Component {
                     <MegaMenu data={ this.state.catList } />
                 </Col>
                 <Col lg={9} md={9} sm={12}>
-                    <HomeSlider />
+                    <HomeSlider sliderData = {this.state.sliderData} />
                 </Col>
             </Row>
         </Container>

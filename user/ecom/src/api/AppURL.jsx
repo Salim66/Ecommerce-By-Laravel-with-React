@@ -19,6 +19,8 @@ class AppURL {
     static productListBySubCategory(category, subcategory){
         return this.baseURL+"/product-list-by-subcategory/"+category+"/"+subcategory;
     }
+
+    static AllSlider = this.baseURL+"/all-slider";
 }
 
 // export default AppURL

@@ -48,18 +48,18 @@ class HomeSlider extends Component {
         ]
       };
 
+      const sliderData = this.props.sliderData;
+
     return (
       <div>
         <Slider {...settings}>
-          <div>
-            <img className='slider-img' src={ Slider1 } alt="" />
-          </div>          
-          <div>
-            <img className='slider-img' src={ Slider2 } alt="" />
-          </div>          
-          <div>
-            <img className='slider-img' src={ Slider3 } alt="" />
-          </div>          
+          {
+            sliderData.map((data, i) => (
+              <div>
+                <img className='slider-img' src={ data.slider_image } alt="" />
+              </div>     
+            ))
+          }
         </Slider>
       </div>
     )
