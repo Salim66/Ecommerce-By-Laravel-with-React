@@ -21,6 +21,10 @@ class AppURL {
     }
 
     static AllSlider = this.baseURL+"/all-slider";
+
+    static productDetails(code){
+        return this.baseURL+"/product-details/"+code;
+    }
 }
 
 // export default AppURL
