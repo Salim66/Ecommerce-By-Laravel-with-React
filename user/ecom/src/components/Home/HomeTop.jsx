@@ -4,6 +4,7 @@ import HomeSlider from './HomeSlider';
 import MegaMenu from './MegaMenu';
 import axios from 'axios';
 import AppURL from '../../api/AppURL';
+import SliderLoading from '../Placeholder/SliderLoading';
 
 class HomeTop extends Component {
 
@@ -11,14 +12,16 @@ class HomeTop extends Component {
     super();
     this.state = {
       catList : [],
-      sliderData: []
+      sliderData: [],
+      loaderDiv: '',
+      mainDiv: 'd-none'
     }
   }
 
   componentDidMount(){
     axios.get(AppURL.AllCategoryDetails)
     .then(res => {
-      this.setState({ catList: res.data });
+      this.setState({ catList: res.data, loaderDiv: 'd-none', mainDiv: '' });
     })
     .catch(error => {
       console.log('error');
@@ -26,7 +29,7 @@ class HomeTop extends Component {
 
     axios.get(AppURL.AllSlider)
     .then(res => {
-      this.setState({ sliderData: res.data });
+      this.setState({ sliderData: res.data, loaderDiv: 'd-none', mainDiv: '' });
     })
     .catch(error => {
       console.log('error');
@@ -37,14 +40,20 @@ class HomeTop extends Component {
     return (
       <>
         <Container className="p-0 m-0 overflow-hidden marginTop" fluid={true}>
-            <Row>
+            <div className={ this.state.loaderDiv }>
+                <SliderLoading />
+            </div>
+
+            <div className={ this.state.mainDiv }>
+            <Row>                
                 <Col lg={3} md={3} sm={12}>
                     <MegaMenu data={ this.state.catList } />
                 </Col>
                 <Col lg={9} md={9} sm={12}>
                     <HomeSlider sliderData = {this.state.sliderData} />
-                </Col>
+                </Col>                
             </Row>
+            </div>
         </Container>
       </>
     )
