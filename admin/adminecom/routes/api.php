@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\SiteInfoController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\VisitorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +35,7 @@ Route::get('/product-list-by-category/{category}', [ProductListController::class
 
 // get all product list by subcategory route
 Route::get('/product-list-by-subcategory/{category}/{subcategory}', [ProductListController::class, 'productListBySubCategory']);
+
+// get home slider route
+Route::get('/all-slider', [SliderController::class, 'allSlider']);
 
