@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AppURL from '../../api/AppURL';
 import axios from 'axios';
+import NewLoading from '../Placeholder/NewLoading';
 
 class NewArrival extends Component {
 
@@ -13,7 +14,9 @@ class NewArrival extends Component {
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.state = {
-      new_data : []
+      new_data : [],
+      loaderDiv: '',
+      mainDiv: 'd-none'
     }
   }
 
@@ -29,7 +32,7 @@ class NewArrival extends Component {
 
     axios.get(AppURL.productListByRemark('NEW'))
     .then(res => {
-      this.setState({ new_data: res.data });
+      this.setState({ new_data: res.data, loaderDiv: 'd-none', mainDiv: '' });
     })
     .catch(error => {
       console.log(error);
@@ -92,6 +95,11 @@ class NewArrival extends Component {
             <p>Some of Our Exclusive Collection, You May Like</p>
           </div>
 
+          <div className={ this.state.loaderDiv }>
+              <NewLoading isLoading={ this.state.loaderDiv } />
+          </div>
+
+          <div className={ this.state.mainDiv }>
           <Row>
             <Slider ref={ c => (this.slider = c) } {...settings}>
               {
@@ -123,6 +131,7 @@ class NewArrival extends Component {
               
             </Slider>
           </Row>
+          </div>
         </Container>
       </>
     )
