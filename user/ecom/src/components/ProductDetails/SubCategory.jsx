@@ -17,7 +17,7 @@ class SubCategory extends Component {
         <Container className='text-center'>
 
           <div className='section-title text-center mb-55'>
-            <h2>{ this.props.category }</h2>
+            <h2>{ this.props.category } / { this.props.subcategory }</h2>
           </div>
 
           <Row>
