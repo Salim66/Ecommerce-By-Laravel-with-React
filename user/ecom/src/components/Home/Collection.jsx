@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import AppURL from '../../api/AppURL';
 import axios from 'axios';
+import CollectionLoading from '../Placeholder/CollectionLoading';
 
 class Collection extends Component {
 
   constructor(){
     super();
     this.state = {
-      collection_data : []
+      collection_data : [],
+      loaderDiv: '',
+      mainDiv: 'd-none'
     }
   }
 
@@ -16,7 +19,7 @@ class Collection extends Component {
 
     axios.get(AppURL.productListByRemark('COLLECTION'))
     .then(res => {
-      this.setState({ collection_data: res.data });
+      this.setState({ collection_data: res.data, loaderDiv: 'd-none', mainDiv: '' });
     })
     .catch(error => {
       console.log(error);
@@ -37,6 +40,11 @@ class Collection extends Component {
             <p>Some of Our Exclusive Collection, You May Like</p>
           </div>
 
+          <div className={ this.state.loaderDiv }>
+              <CollectionLoading isLoading={ this.state.loaderDiv } />
+          </div>
+
+          <div className={ this.state.mainDiv }>
           <Row>
 
             {
@@ -64,10 +72,9 @@ class Collection extends Component {
                 }
               })
             }
-            
 
-          
           </Row>
+          </div>
         </Container>
       </>
     )
