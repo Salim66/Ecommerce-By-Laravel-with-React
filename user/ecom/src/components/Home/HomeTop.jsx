@@ -41,7 +41,7 @@ class HomeTop extends Component {
       <>
         <Container className="p-0 m-0 overflow-hidden marginTop" fluid={true}>
             <div className={ this.state.loaderDiv }>
-                <SliderLoading />
+                <SliderLoading isLoading={ this.state.loaderDiv } />
             </div>
 
             <div className={ this.state.mainDiv }>

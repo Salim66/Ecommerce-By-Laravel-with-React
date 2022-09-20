@@ -3,13 +3,16 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import AppURL from '../../api/AppURL';
+import FeaturedLoading from '../Placeholder/FeaturedLoading';
 
 class FeaturedProducts extends Component {
 
   constructor(){
     super();
     this.state = {
-      featured_data : []
+      featured_data : [],
+      loaderDiv: '',
+      mainDiv: 'd-none'
     }
   }
 
@@ -17,7 +20,7 @@ class FeaturedProducts extends Component {
 
     axios.get(AppURL.productListByRemark('FEATURED'))
     .then(res => {
-      this.setState({ featured_data: res.data });
+      this.setState({ featured_data: res.data, loaderDiv: 'd-none', mainDiv: '' });
     })
     .catch(error => {
       console.log(error);
@@ -38,6 +41,11 @@ class FeaturedProducts extends Component {
             <p>Some of Our Exclusive Collection, You May Like</p>
           </div>
 
+          <div className={ this.state.loaderDiv }>
+              <FeaturedLoading isLoading={ this.state.loaderDiv } />
+          </div>
+
+          <div className={ this.state.mainDiv }>
           <Row>
 
             {
@@ -73,6 +81,7 @@ class FeaturedProducts extends Component {
             
 
           </Row>
+          </div>
         </Container>
       </>
     )
