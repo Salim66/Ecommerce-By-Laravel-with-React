@@ -3,20 +3,23 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import axios from 'axios';
 import AppURL from '../../api/AppURL';
 import { Link } from 'react-router-dom';
+import CategoryLoading from '../Placeholder/CategoryLoading';
 
 class Categories extends Component {
 
   constructor(){
     super();
     this.state = {
-      catList : []
+      catList : [],
+      loaderDiv: '',
+      mainDiv: 'd-none'
     }
   }
 
   componentDidMount(){
     axios.get(AppURL.AllCategoryDetails)
     .then(res => {
-      this.setState({ catList: res.data });
+      this.setState({ catList: res.data, loaderDiv: 'd-none', mainDiv: '' });
     })
     .catch(error => {
       console.log('error');
@@ -37,7 +40,11 @@ class Categories extends Component {
             <p>Some of Our Exclusive Collection, You May Like</p>
           </div>
 
+          <div className={ this.state.loaderDiv }>
+              <CategoryLoading isLoading={ this.state.loaderDiv } />
+          </div>
 
+          <div className={ this.state.mainDiv }>
           <Row>
             {
               catList.map((catList, i) => (
@@ -56,7 +63,7 @@ class Categories extends Component {
               ))
             }
           </Row>
-
+          </div>
           
         </Container>
       </>
