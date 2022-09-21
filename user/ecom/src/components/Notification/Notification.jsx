@@ -12,7 +12,10 @@ class Notification extends Component {
             show: false,
             notification_data : [],
             loaderDiv: '',
-            mainDiv: 'd-none'
+            mainDiv: 'd-none',
+            notificationMsg: '',
+            notificationTitle: '',
+            notificationDate: ''
         }
     }
 
@@ -32,8 +35,13 @@ class Notification extends Component {
         this.setState({ show: false });
     }
 
-    handleShow = () => {
+    handleShow = (e) => {
         this.setState({ show: true });
+        // get dynamic value by passing attribute
+        let title = e.target.getAttribute('data-title');
+        let message = e.target.getAttribute('data-message');
+        let date = e.target.getAttribute('data-date');
+        this.setState({ notificationTitle: title, notificationMsg: message, notificationDate: date });
     }
 
   render() {
@@ -56,7 +64,7 @@ class Notification extends Component {
                                 <Card.Body>
                                     <h6>{ data.title }</h6>
                                     <p className="py-1  px-0 text-primary m-0"><i className="fa  fa-bell"></i>   Date: { data.date } | Status: Unread</p>
-                                    <Button className='btn btn-danger'>Details</Button>
+                                    <Button data-title={ data.title } data-message={ data.message } data-date={ data.date } className='btn btn-danger'>Details</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -69,16 +77,11 @@ class Notification extends Component {
 
         <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header closeButton>
-            <h6><i className="fa fa-bell"></i> Date:11/05/2021</h6>
+            <h6><i className="fa fa-bell"></i> Date:{ this.state.notificationDate }</h6>
             </Modal.Header>
             <Modal.Body>
-                <h6>Woohoo, you're reading this text in a modal!</h6>
-                <p>
-                Each course has been hand-tailored to teach a specific skill. I hope you agree! Whether you’re trying to learn a new skill from scratch or want to refresh your memory on something you’ve learned in the past, you’ve come to the right place.
-                </p>
-
-
-
+                <h6>{ this.state.notificationTitle }</h6>
+                <p>{ this.state.notificationMsg }</p>
             </Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
