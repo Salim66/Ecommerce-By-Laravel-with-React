@@ -10,7 +10,7 @@ import ProductDetails from '../components/ProductDetails/ProductDetails';
 import SuggestedProduct from '../components/ProductDetails/SuggestedProduct';
 import axios from 'axios';
 
-const ProductDetailsPage = () => {
+const ProductDetailsPage = (props) => {
         
   const [productData, setProductData] = useState([]);
   const [loaderDiv, setLoaderDiv] = useState('');

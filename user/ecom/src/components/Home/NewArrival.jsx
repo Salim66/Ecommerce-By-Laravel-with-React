@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import AppURL from '../../api/AppURL';
 import axios from 'axios';
 import NewLoading from '../Placeholder/NewLoading';
+import { Link } from 'react-router-dom';
 
 class NewArrival extends Component {
 
@@ -106,6 +107,7 @@ class NewArrival extends Component {
                 new_data.map((data, i) => {
                   if(data.special_price == 'na'){
                     return <div>
+                      <Link to={'/productdetails/'+data.id}>
                       <Card className="image-box card">
                         <img className='center' src={ data.image } />
                         <Card.Body>
@@ -113,9 +115,11 @@ class NewArrival extends Component {
                           <p className='product-price-on-card'>Price: { data.price }</p>
                         </Card.Body>
                       </Card>
+                      </Link>
                     </div>
                   }else {
                     return <div>
+                      <Link to={'/productdetails/'+data.id}>
                       <Card className="image-box card">
                         <img className='center' src={ data.image } />
                         <Card.Body>
@@ -123,6 +127,7 @@ class NewArrival extends Component {
                           <p className='product-price-on-card'>Price: <strike className="text-secondary">{ data.price }</strike> { data.special_price }</p>
                         </Card.Body>
                       </Card>
+                      </Link>
                     </div>
                   }
                 })
