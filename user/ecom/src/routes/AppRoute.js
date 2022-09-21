@@ -12,6 +12,7 @@ import ProductDetailsPage from '../pages/ProductDetailsPage';
 import ProductSubCategoryPage from '../pages/ProductSubCategoryPage';
 import PurchasePage from '../pages/PurchasePage';
 import RefundPage from '../pages/RefundPage';
+import SearchPage from '../pages/SearchPage';
 import UserLoginPage from '../pages/UserLoginPage';
 
 export class AppRoute extends Component {
@@ -35,6 +36,7 @@ export class AppRoute extends Component {
             <Route path="/cart" element={ <CartPage /> } />
             <Route path="/productcategory/:category" element={ <ProductCategoryPage /> } />
             <Route path="/productsubcategory/:category/:subcategory" element={ <ProductSubCategoryPage /> } />
+            <Route path="/searchbykey/:searchKey" element={ <SearchPage /> } />
         </Routes>
       </>
     )

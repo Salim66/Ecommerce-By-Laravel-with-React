@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Navbar, Container, Row, Col, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Logo from '../../assets/images/easyshop.png';
 import MegaMenuAll from '../Home/MegaMenuAll';
 import Bars from '../../assets/images/bars.png';
@@ -15,6 +15,9 @@ export class NavMenuDesktop extends Component {
       searchKey: "",
       searchRedirectStatus: false
     }
+    this.searchOnChange = this.searchOnChange.bind(this);
+    this.searchOnClick = this.searchOnClick.bind(this);
+    this.searchRedirect = this.searchRedirect.bind(this);
   }
 
 
@@ -38,15 +41,22 @@ export class NavMenuDesktop extends Component {
   }
 
   // search on change event
-  searchOnChange = (e) => {
+  searchOnChange(e){
     let searchKey = e.target.value;
     this.setState({ searchKey: searchKey });
   }
 
   // search on submit button event
-  searchOnChange = () => {
-    if(this.status.searchKey.length >= 2){
+  searchOnClick() {
+    if(this.state.searchKey.length >= 2){
       this.setState({ searchRedirectStatus: true });
+    }
+  }
+
+  // search form function whern searchredirectstatus is true
+  searchRedirect(){
+    if(this.state.searchRedirectStatus === true){
+      return <Navigate to={"/searchbykey/"+this.searchKey} />
     }
   }
 
@@ -81,6 +91,7 @@ export class NavMenuDesktop extends Component {
                 </Col>
                 
               </Row>
+              {this.searchRedirect() }
             </Container>
 
             
