@@ -10,6 +10,18 @@ class ProductDetails extends Component {
         ReactDOM.findDOMNode(preview_image).setAttribute('src', select_image);
     }
 
+    priceOption(price, special_price){
+        if(special_price == 'na'){
+            return (
+                <p className='product-price-on-card'>Price: { price }</p>
+            )
+        }else {
+            return (
+                <p className='product-price-on-card'>Price: <strike className="text-secondary">{ price }</strike> { special_price }</p>
+            )
+        }
+    }
+
   render() {
 
     let { productDetails,  productList} = this.props.productData;
@@ -67,11 +79,7 @@ class ProductDetails extends Component {
                         <Col className="p-3 " md={6} lg={6} sm={12} xs={12}>
                         <h5 className="Product-Name">{ productList.title }</h5>
                         <h6 className="section-sub-title">{ productDetails.short_description }</h6>
-                        <div className="input-group">
-                            <div className="Product-price-card d-inline ">Reguler Price { productList.price }</div>
-                            <div className="Product-price-card d-inline ">50% Discount</div>
-                            <div className="Product-price-card d-inline ">New Price { productList.special_price }</div>
-                        </div>
+                        { this.priceOption(productList.price, productList.special_price) }
                         <h6 className="mt-2">Category: <b>{ productList.category }</b></h6>
                         <h6 className="mt-2">Sub-Category: <b>{ productList.subcategory }</b></h6>
                         <h6 className="mt-2">Brand: <b>{ productList.brand }</b></h6>
