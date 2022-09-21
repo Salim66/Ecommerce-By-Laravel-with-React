@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form, Breadcrumb } from 'react-bootstrap';
 import axios from 'axios';
 import AppURL from '../../api/AppURL';
 import parse from 'html-react-parser';
+import { Link } from 'react-router-dom';
 
 
 class About extends Component {
@@ -32,6 +33,12 @@ class About extends Component {
   render() {
     return (
         <Container>
+            <div className="breadbody">
+                <Breadcrumb>
+                    <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to="/about">About</Link></Breadcrumb.Item>
+                </Breadcrumb>
+            </div>
             <Row className='p-2'>
                 <Col className='shadow-sm bg-white mt-2' lg={12} md={12} sm={12} xs={12}>
 

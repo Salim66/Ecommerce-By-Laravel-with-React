@@ -20,6 +20,7 @@ export class AppRoute extends Component {
       <>
         <Routes>
             <Route path="/" element={ <HomePage /> } />
+
             <Route path="/login" element={ <UserLoginPage /> } />
             <Route path="/contact" element={ <ContactPage /> } />
 
