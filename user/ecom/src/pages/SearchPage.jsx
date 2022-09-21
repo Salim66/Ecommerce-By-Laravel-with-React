@@ -12,6 +12,8 @@ const SearchPage = () => {
 
     const [searchData, setSearchData] = useState([]);
     const params = useParams();
+
+    console.log(params.searchKey);
     
     useEffect(() => {
       window.scroll(0,0);

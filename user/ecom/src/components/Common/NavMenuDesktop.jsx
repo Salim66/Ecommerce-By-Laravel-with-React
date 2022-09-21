@@ -56,7 +56,8 @@ export class NavMenuDesktop extends Component {
   // search form function whern searchredirectstatus is true
   searchRedirect(){
     if(this.state.searchRedirectStatus === true){
-      return <Navigate to={"/searchbykey/"+this.searchKey} />
+      return <Navigate to={"/searchbykey/"+this.state.searchKey} />
+      
     }
   }
 
