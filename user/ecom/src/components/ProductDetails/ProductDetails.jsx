@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form, Breadcrumb } from 'react-bootstrap';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 class ProductDetails extends Component {
 
@@ -54,6 +55,14 @@ class ProductDetails extends Component {
     return (
       <>
         <Container  className="BetweenTwoSection" fluid={true}>
+            <div className="breadbody">
+              <Breadcrumb>
+                  <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
+                  <Breadcrumb.Item><Link to={"/productcategory/"+productList.category}>{ productList.category }</Link></Breadcrumb.Item>
+                  <Breadcrumb.Item><Link to={"/productsubcategory/"+productList.category+"/"+productList.subcategory}>{ productList.subcategory }</Link></Breadcrumb.Item>
+                  <Breadcrumb.Item><Link to={"/productdetails/"+productList.id}>{ productList.title }</Link></Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
             <Row className="p-2">
                 <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
                     <Row>

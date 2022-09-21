@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Breadcrumb } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 class Category extends Component {
@@ -16,6 +16,12 @@ class Category extends Component {
     return (
         <>
         <Container className='text-center'>
+          <div className="breadbody">
+              <Breadcrumb>
+                  <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
+                  <Breadcrumb.Item><Link to={"/productcategory/"+this.props.category}>{ this.props.category }</Link></Breadcrumb.Item>
+              </Breadcrumb>
+          </div>
 
           <div className='section-title text-center mb-55'>
             <h2>{ this.props.category }</h2>
