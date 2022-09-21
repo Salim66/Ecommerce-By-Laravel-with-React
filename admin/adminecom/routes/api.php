@@ -47,3 +47,6 @@ Route::get('/product-details/{id}', [ProductDetailsController::class, 'productDe
 // get notification route
 Route::get('/notification', [NotificationController::class, 'notificationHistory']);
 
+// get product by search route
+Route::get('/search/{key}', [ProductListController::class, 'productListBySearch']);
+
