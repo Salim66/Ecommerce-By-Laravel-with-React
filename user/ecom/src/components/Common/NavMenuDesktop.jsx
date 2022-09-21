@@ -11,7 +11,9 @@ export class NavMenuDesktop extends Component {
     super();
     this.state = {
       sideNavState: "sideNavClose",
-      contentOverState: "ContentOverlayClose"
+      contentOverState: "ContentOverlayClose",
+      searchKey: "",
+      searchRedirectStatus: false
     }
   }
 
@@ -35,6 +37,21 @@ export class NavMenuDesktop extends Component {
     }
   }
 
+  // search on change event
+  searchOnChange = (e) => {
+    let searchKey = e.target.value;
+    this.setState({ searchKey: searchKey });
+  }
+
+  // search on submit button event
+  searchOnChange = () => {
+    if(this.status.searchKey.length >= 2){
+      this.setState({ searchRedirectStatus: true });
+    }
+  }
+
+
+
   render() {
     return (
       <>
@@ -50,8 +67,8 @@ export class NavMenuDesktop extends Component {
 
                 <Col className='p-1 mt-1' xl={4} lg={4} md={4} sm={12} xm={12}>
                   <div className="input-group w-100">
-                    <input type="text" className='form-control' />
-                    <Button type="button" className='btn site-btn'><i className='fa fa-search'></i></Button>
+                    <input type="text" className='form-control' onChange={ this.searchOnChange } />
+                    <Button onClick={ this.searchOnClick } type="button" className='btn site-btn'><i className='fa fa-search'></i></Button>
                   </div>
                 </Col>
 

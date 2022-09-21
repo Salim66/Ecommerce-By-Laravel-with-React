@@ -27,6 +27,11 @@ class AppURL {
     }
 
     static NotificationHistory = this.baseURL+"/notification";
+
+    static productBySearch(searchKey){
+        return this.baseURL+"/search/"+searchKey;
+    }
+
 }
 
 // export default AppURL
