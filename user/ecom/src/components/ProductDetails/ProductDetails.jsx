@@ -15,6 +15,30 @@ class ProductDetails extends Component {
     let { productDetails,  productList} = this.props.productData;
     // console.log(productDetails);
 
+    let colorDiv = 'd-none';
+    let colorOption = '';
+    if(productDetails.color != 'na'){
+        let colorArray = productDetails.color.split(',');
+        colorOption = colorArray.map((data, i) => {
+            return <option value={ data }>{ data }</option>
+        })
+        colorDiv = '';
+    }else {
+        colorDiv = 'd-none';
+    }
+
+    let sizeDiv = 'd-none';
+    let sizeOption = '';
+    if(productDetails.size != 'na'){
+        let sizeArray = productDetails.size.split(',');
+        sizeOption = sizeArray.map((data, i) => {
+            return <option value={ data }>{ data }</option>
+        })
+        sizeDiv = '';
+    }else {
+        sizeDiv = 'd-none';
+    }
+
     return (
       <>
         <Container  className="BetweenTwoSection" fluid={true}>
@@ -48,44 +72,43 @@ class ProductDetails extends Component {
                             <div className="Product-price-card d-inline ">50% Discount</div>
                             <div className="Product-price-card d-inline ">New Price { productList.special_price }</div>
                         </div>
-                        <h6 className="mt-2">Category: <span>{ productList.category }</span></h6>
-                        <h6 className="mt-2">Sub-Category: <span>{ productList.subcategory }</span></h6>
-                        <h6 className="mt-2">Brand: <span>{ productList.brand }</span></h6>
-                        <h6 className="mt-2">Remark: <span>{ productList.remark }</span></h6>
-                        <h6 className="mt-2">Choose Color</h6>
-                        <div className="input-group">
-                            <div className="form-check mx-1">
-                                    <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                                    <label className="form-check-label" htmlFor="exampleRadios1">Black</label>
-                            </div>
-                            <div className="form-check mx-1">
-                                    <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                                    <label className="form-check-label" htmlFor="exampleRadios1">Green</label>
-                            </div>
-                            <div className="form-check mx-1">
-                                    <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                                    <label className="form-check-label" htmlFor="exampleRadios1">Red</label>
-                            </div>
+                        <h6 className="mt-2">Category: <b>{ productList.category }</b></h6>
+                        <h6 className="mt-2">Sub-Category: <b>{ productList.subcategory }</b></h6>
+                        <h6 className="mt-2">Brand: <b>{ productList.brand }</b></h6>
+                        <h6 className="mt-2">Remark: <b>{ productList.remark }</b></h6>
+
+                        <div className={ colorDiv }>
+                            <h6 className="mt-2">Choose Color</h6>
+                            <select className='form-control form-select'>
+                                <option value='0'>Chose Color</option>
+                                {colorOption}
+                            </select>
                         </div>
 
-                        <h6 className="mt-2">Choose Size</h6>
-                        <div className="input-group">
-                            <div className="form-check mx-1">
-                                    <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                                    <label className="form-check-label" htmlFor="exampleRadios1">X</label>
-                            </div>
-                            <div className="form-check mx-1">
-                                    <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                                    <label className="form-check-label" htmlFor="exampleRadios1">XX</label>
-                            </div>
-                            <div className="form-check mx-1">
-                                    <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                                    <label className="form-check-label" htmlFor="exampleRadios1">XXXX</label>
-                            </div>
+                        <div className={ sizeDiv }>
+                            <h6 className="mt-2">Choose Size</h6>
+                            <select className='form-control form-select'>
+                                <option value='0'>Chose Size</option>
+                                {sizeOption}
+                            </select>
                         </div>
+
 
                         <h6 className="mt-2">Quantity</h6>
-                        <input  className="form-control text-center w-50" type="number" />
+                        <select className='form-control form-select'>
+                            <option value='0'>Select Quantity</option>
+                            <option value='01'>01</option>
+                            <option value='02'>02</option>
+                            <option value='03'>03</option>
+                            <option value='04'>04</option>
+                            <option value='05'>05</option>
+                            <option value='06'>06</option>
+                            <option value='07'>07</option>
+                            <option value='08'>08</option>
+                            <option value='09'>09</option>
+                            <option value='10'>10</option>
+                        </select>
+                        
 
                         <div className="input-group mt-3">
                             <button className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  Add To Cart</button>
