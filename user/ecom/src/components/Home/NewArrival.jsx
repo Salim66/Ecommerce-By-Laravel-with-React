@@ -107,7 +107,7 @@ class NewArrival extends Component {
                 new_data.map((data, i) => {
                   if(data.special_price == 'na'){
                     return <div>
-                      <Link to={'/productdetails/'+data.id}>
+                      <Link className='text-link' to={'/productdetails/'+data.id}>
                       <Card className="image-box card">
                         <img className='center' src={ data.image } />
                         <Card.Body>
@@ -119,7 +119,7 @@ class NewArrival extends Component {
                     </div>
                   }else {
                     return <div>
-                      <Link to={'/productdetails/'+data.id}>
+                      <Link className='text-link' to={'/productdetails/'+data.id}>
                       <Card className="image-box card">
                         <img className='center' src={ data.image } />
                         <Card.Body>

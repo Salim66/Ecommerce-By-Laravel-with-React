@@ -61,3 +61,8 @@
    height: 200px;
    margin-left: 80px;
 }
+
+.text-link {
+    color: inherit;
+    text-decoration: inherit;
+}
