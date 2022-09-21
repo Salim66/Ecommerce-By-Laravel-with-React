@@ -20,3 +20,13 @@
 .marginTop {
     margin-top: 80px !important;
 }
+
+.big_image {
+    height: 400px;
+    margin-left: 250px;
+    width: 30%;
+}
+
+.small_image {
+    height: 100px;
+}
