@@ -7,6 +7,10 @@ import Product4 from '../../assets/images/product/product4.png';
 
 class ProductDetails extends Component {
   render() {
+
+    let { productDetails,  productList} = this.props.productData;
+    // console.log(productDetails);
+
     return (
       <>
         <Container  className="BetweenTwoSection" fluid={true}>
@@ -14,32 +18,36 @@ class ProductDetails extends Component {
                 <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
                     <Row>
                         <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
-                        <img className="w-100" src={Product1} />
+                        <img className="w-100" src={productList.image} />
                         <Container  className="my-3">
                             <Row>
                                     <Col className="p-0 m-0"  md={3} lg={3} sm={3} xs={3}>
-                                        <img className="w-100" src={Product1} />
+                                        <img className="w-100" src={productDetails.image_one} />
                                     </Col>
                                     <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                                        <img className="w-100" src={Product2} />
+                                        <img className="w-100" src={productDetails.image_two} />
                                     </Col>
                                     <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                                        <img className="w-100" src={Product3} />
+                                        <img className="w-100" src={productDetails.image_three} />
                                     </Col>
                                     <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                                        <img className="w-100" src={Product4} />
+                                        <img className="w-100" src={productDetails.image_four} />
                                     </Col>
                             </Row>
                         </Container>
                         </Col>
                         <Col className="p-3 " md={6} lg={6} sm={12} xs={12}>
-                        <h5 className="Product-Name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
-                        <h6 className="section-sub-title">Some Of Our Exclusive Collection, You May Like Some Of Our Exclusive Collectio</h6>
+                        <h5 className="Product-Name">{ productList.title }</h5>
+                        <h6 className="section-sub-title">{ productDetails.short_description }</h6>
                         <div className="input-group">
-                            <div className="Product-price-card d-inline ">Reguler Price 200</div>
+                            <div className="Product-price-card d-inline ">Reguler Price { productList.price }</div>
                             <div className="Product-price-card d-inline ">50% Discount</div>
-                            <div className="Product-price-card d-inline ">New Price 100</div>
+                            <div className="Product-price-card d-inline ">New Price { productList.special_price }</div>
                         </div>
+                        <h6 className="mt-2">Category: <span>{ productList.category }</span></h6>
+                        <h6 className="mt-2">Sub-Category: <span>{ productList.subcategory }</span></h6>
+                        <h6 className="mt-2">Brand: <span>{ productList.brand }</span></h6>
+                        <h6 className="mt-2">Remark: <span>{ productList.remark }</span></h6>
                         <h6 className="mt-2">Choose Color</h6>
                         <div className="input-group">
                             <div className="form-check mx-1">
@@ -86,8 +94,7 @@ class ProductDetails extends Component {
                     <Row>
                         <Col className="" md={6} lg={6} sm={12} xs={12}>
                         <h6 className="mt-2">DETAILS</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation</p>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation</p>
+                        <p>{ productDetails.long_description }</p>
                         </Col>
 
                         <Col className="" md={6} lg={6} sm={12} xs={12}>
