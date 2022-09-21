@@ -1,13 +1,31 @@
 import React, { Component } from 'react';
 import { Container,Row,Col, Card,Button,Modal } from 'react-bootstrap';
+import AppURL from '../../api/AppURL';
+import axios from 'axios';
+import NotificationLoading from '../Placeholder/NotificationLoading';
 
 class Notification extends Component {
 
     constructor(){
         super();
         this.state = {
-            show: false
+            show: false,
+            notification_data : [],
+            loaderDiv: '',
+            mainDiv: 'd-none'
         }
+    }
+
+    componentDidMount(){
+
+        axios.get(AppURL.NotificationHistory)
+        .then(res => {
+          this.setState({ notification_data: res.data, loaderDiv: 'd-none', mainDiv: '' });
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    
     }
 
     handleClose = () => {
@@ -19,72 +37,33 @@ class Notification extends Component {
     }
 
   render() {
+
+    let notification_data = this.state.notification_data;
+
     return (
       <>
         <Container className="TopSection">
+            <div className={ this.state.loaderDiv }>
+              <NotificationLoading isLoading={ this.state.loaderDiv } />
+            </div>
+
+            <div className={ this.state.mainDiv }>
             <Row>
-                <Col className=" p-1 " md={6} lg={6} sm={12} xs={12}>
-                    <Card onClick={this.handleShow} className="notification-card">
-                        <Card.Body>
-                            <h6> Lorem Ipsum is simply dummy text of the printing</h6>
-                            <p className="py-1  px-0 text-primary m-0"><i className="fa  fa-bell"></i>   Date: 22/12/2010 | Status: Unread</p>
-                        </Card.Body>
-                    </Card>
-                </Col>
-
-                <Col className=" p-1 " md={6} lg={6} sm={12} xs={12}>
-                    <Card onClick={this.handleShow} className="notification-card">
-                        <Card.Body>
-                            <h6> Lorem Ipsum is simply dummy text of the printing</h6>
-                            <p className="py-1   px-0 text-primary m-0"><i className="fa  fa-bell"></i>   Date: 22/12/2010 | Status: Unread</p>
-                        </Card.Body>
-                    </Card>
-                </Col>
-
-                <Col className="p-1" md={6} lg={6} sm={12} xs={12}>
-                    <Card  className="notification-card">
-                        <Card.Body>
-                            <h6> Lorem Ipsum is simply dummy text of the printing</h6>
-                            <p className="py-1  px-0 text-success m-0"><i className="fa  fa-bell"></i>   Date: 22/12/2010 | Status: Read</p>
-                        </Card.Body>
-                    </Card>
-
-                </Col>
-
-                <Col className="p-1" md={6} lg={6} sm={12} xs={12}>
-
-                    <Card className="notification-card">
-                        <Card.Body>
-                            <h5> Lorem Ipsum is simply dummy text of the printing</h5>
-                            <p className="py-1  px-0 text-success m-0"><i className="fa fa-bell"></i>   Date: 22/12/2010 | Status: Read</p>
-                        </Card.Body>
-                    </Card>
-
-                </Col>
-
-                <Col className="p-1" md={6} lg={6} sm={12} xs={12}>
-
-                    <Card className="notification-card">
-                        <Card.Body>
-                            <h6> Lorem Ipsum is simply dummy text of the printing</h6>
-                            <p className="py-1  px-0 text-success m-0"><i className="fa  fa-bell"></i>   Date: 22/12/2010 | Status: Read</p>
-                        </Card.Body>
-                    </Card>
-
-                </Col>
-
-                <Col className="p-1" md={6} lg={6} sm={12} xs={12}>
-
-                    <Card className="notification-card">
-                        <Card.Body>
-                            <h6> Lorem Ipsum is simply dummy text of the printing</h6>
-                            <p className="py-1 px-0 text-success m-0"><i className="fa  fa-bell"></i>   Date: 22/12/2010 | Status: Read</p>
-                        </Card.Body>
-                    </Card>
-
-                </Col>
-
+                {
+                    notification_data.map((data, i) => (
+                        <Col key={i.toString()} className=" p-1 " md={6} lg={6} sm={12} xs={12}>
+                            <Card onClick={this.handleShow} className="notification-card">
+                                <Card.Body>
+                                    <h6>{ data.title }</h6>
+                                    <p className="py-1  px-0 text-primary m-0"><i className="fa  fa-bell"></i>   Date: { data.date } | Status: Unread</p>
+                                    <Button className='btn btn-danger'>Details</Button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))
+                }
             </Row>
+            </div>
         </Container>
 
 
