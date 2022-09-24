@@ -3,35 +3,30 @@ import FooterDesktop from '../components/Common/FooterDesktop';
 import FooterMobile from '../components/Common/FooterMobile';
 import NavMenuDesktop from '../components/Common/NavMenuDesktop';
 import NavMenuMobile from '../components/Common/NavMenuMobile';
-import UserLogin from '../components/Common/UserLogin';
+import UserRegister from '../components/Common/UserRegister';
 
-class UserLoginPage extends Component {
-  
-  componentDidMount(){
-      window.scroll(0,0);
-  }
-
+export class UserRegisterPage extends Component {
   render() {
     return (
         <>
-          <div className='desktop'>
+            <div className='desktop'>
             <NavMenuDesktop />
-          </div>
-          <div className='mobile'>
+            </div>
+            <div className='mobile'>
             <NavMenuMobile />
-          </div>
-          
-          <UserLogin />
+            </div>
+            
+            <UserRegister />
 
-          <div className='desktop'>
+            <div className='desktop'>
             <FooterDesktop />
-          </div>        
-          <div className='mobile'>
+            </div>        
+            <div className='mobile'>
             <FooterMobile />
-          </div>        
+            </div>        
         </>
     )
   }
-}
+};
 
-export default UserLoginPage;
+export default UserRegisterPage;
