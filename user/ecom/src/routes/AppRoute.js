@@ -11,6 +11,7 @@ import PrivacyPage from '../pages/PrivacyPage';
 import ProductCategoryPage from '../pages/ProductCategoryPage';
 import ProductDetailsPage from '../pages/ProductDetailsPage';
 import ProductSubCategoryPage from '../pages/ProductSubCategoryPage';
+import ProfilePage from '../pages/ProfilePage';
 import PurchasePage from '../pages/PurchasePage';
 import RefundPage from '../pages/RefundPage';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
@@ -28,7 +29,8 @@ export class AppRoute extends Component {
             <Route path="/login" element={ <UserLoginPage /> } />
             <Route path="/register" element={ <UserRegisterPage /> } />
             <Route path="/forget" element={ <ForgetPasswordPage /> } />
-            <Route path="/reset" element={ <ResetPasswordPage /> } />
+            <Route path="/reset/:id" element={ <ResetPasswordPage /> } />
+            <Route path="/profile" element={ <ProfilePage /> } />
 
 
             <Route path="/contact" element={ <ContactPage /> } />
