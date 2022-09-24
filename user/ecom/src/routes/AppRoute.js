@@ -4,6 +4,7 @@ import AboutPage from '../pages/AboutPage';
 import CartPage from '../pages/CartPage';
 import ContactPage from '../pages/ContactPage';
 import FavouritePage from '../pages/FavouritePage';
+import ForgetPasswordPage from '../pages/ForgetPasswordPage';
 import HomePage from '../pages/HomePage';
 import NotificationPage from '../pages/NotificationPage';
 import PrivacyPage from '../pages/PrivacyPage';
@@ -12,6 +13,7 @@ import ProductDetailsPage from '../pages/ProductDetailsPage';
 import ProductSubCategoryPage from '../pages/ProductSubCategoryPage';
 import PurchasePage from '../pages/PurchasePage';
 import RefundPage from '../pages/RefundPage';
+import ResetPasswordPage from '../pages/ResetPasswordPage';
 import SearchPage from '../pages/SearchPage';
 import UserLoginPage from '../pages/UserLoginPage';
 import UserRegisterPage from '../pages/UserRegisterPage';
@@ -25,8 +27,11 @@ export class AppRoute extends Component {
 
             <Route path="/login" element={ <UserLoginPage /> } />
             <Route path="/register" element={ <UserRegisterPage /> } />
-            <Route path="/contact" element={ <ContactPage /> } />
+            <Route path="/forget" element={ <ForgetPasswordPage /> } />
+            <Route path="/reset" element={ <ResetPasswordPage /> } />
 
+
+            <Route path="/contact" element={ <ContactPage /> } />
             <Route path="/purchase" element={ <PurchasePage /> } />
             <Route path="/privacy" element={ <PrivacyPage /> } />
             <Route path="/refund" element={ <RefundPage /> } />
