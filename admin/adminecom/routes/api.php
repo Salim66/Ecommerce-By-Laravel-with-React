@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\VisitorController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ForgetController;
+use App\Http\Controllers\User\ResetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 // Forgot Password Route
 Route::post('/forget-password', [ForgetController::class, 'forgetPassword']);
+// Reset Password Route
+Route::post('/reset-password', [ResetController::class, 'resetPassword']);
 //////////////////// User Authentication End ////////////////////////
 
 

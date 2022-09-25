@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use Exception;
 use App\Models\User;
 use App\Mail\ForgetMail;
 use Illuminate\Http\Request;
