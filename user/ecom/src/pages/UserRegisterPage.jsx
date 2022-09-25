@@ -6,7 +6,16 @@ import NavMenuMobile from '../components/Common/NavMenuMobile';
 import UserRegister from '../components/Common/UserRegister';
 
 export class UserRegisterPage extends Component {
+
+  componentDidMount(){
+    window.scroll(0,0);
+  }
+
   render() {
+
+    const user = this.props.user;
+    const setUser = this.props.setUser;
+
     return (
         <>
             <div className='desktop'>
@@ -16,7 +25,7 @@ export class UserRegisterPage extends Component {
             <NavMenuMobile />
             </div>
             
-            <UserRegister />
+            <UserRegister user={user} setUser={setUser} />
 
             <div className='desktop'>
             <FooterDesktop />

@@ -12,6 +12,11 @@ class UserLoginPage extends Component {
   }
 
   render() {
+
+    const user = this.props.user;
+    const setUser = this.props.setUser;
+
+
     return (
         <>
           <div className='desktop'>
@@ -21,7 +26,7 @@ class UserLoginPage extends Component {
             <NavMenuMobile />
           </div>
           
-          <UserLogin />
+          <UserLogin user={user} setUser={setUser} />
 
           <div className='desktop'>
             <FooterDesktop />

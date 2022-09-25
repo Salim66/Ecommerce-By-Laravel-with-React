@@ -33,6 +33,7 @@ export class UserRegister extends Component {
         .then(res => {
             localStorage.setItem('token', res.data.token);
             this.setState({loggedIn:true});
+            this.props.setUser(res.data.user);
         })
         .catch(error => {
 

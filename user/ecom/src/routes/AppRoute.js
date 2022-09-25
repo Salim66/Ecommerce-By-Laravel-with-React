@@ -48,17 +48,17 @@ export class AppRoute extends Component {
   render() {
     return (
       <>
-        <NavMenuDesktop user={this.state.user} setUser={this.setuser} />
-        
+        <NavMenuDesktop user={this.state.user} setUser={this.setUser} />
+
         <Routes>
 
             <Route path="/" element={ <HomePage /> } />
 
-            <Route path="/login" element={ <UserLoginPage /> } />
-            <Route path="/register" element={ <UserRegisterPage /> } />
+            <Route path="/login" element={ <UserLoginPage user={this.state.user} setUser={this.setUser} /> } />
+            <Route path="/register" element={ <UserRegisterPage user={this.state.user} setUser={this.setUser} /> } />
             <Route path="/forget" element={ <ForgetPasswordPage /> } />
             <Route path="/reset/:id" element={ <ResetPasswordPage /> } />
-            <Route path="/profile" element={ <ProfilePage user={this.state.user} setUser={this.setuser} /> } />
+            <Route path="/profile" element={ <ProfilePage user={this.state.user} setUser={this.setUser} /> } />
 
 
             <Route path="/contact" element={ <ContactPage /> } />
