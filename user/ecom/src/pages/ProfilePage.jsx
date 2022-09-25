@@ -7,6 +7,9 @@ import Profile from '../components/Common/Profile';
 
 class ProfilePage extends Component {
   render() {
+
+    let user = this.props.user;
+
     return (
         <>
             <div className='desktop'>
@@ -16,7 +19,7 @@ class ProfilePage extends Component {
             <NavMenuMobile />
             </div>
             
-            <Profile />
+            <Profile user={user} />
 
             <div className='desktop'>
             <FooterDesktop />
