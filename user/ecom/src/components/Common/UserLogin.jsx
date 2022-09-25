@@ -1,9 +1,39 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import AppURL from '../../api/AppURL';
 import Login from '../../assets/images/login.png';
 
 class UserLogin extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      message: ""
+    }
+  }
+
+  formSubmit = (e) => {
+    e.preventDefault();
+
+    const data = {
+      email: this.state.email,
+      password: this.state.password
+    }
+
+    axios.post(AppURL.userLogin, data)
+    .then(res => {
+
+    })
+    .catch(error => {
+      
+    })
+
+  }
+
   render() {
     return (
       <>
@@ -12,11 +42,11 @@ class UserLogin extends Component {
                 <Col className='shadow-sm bg-white mt-2' lg={12} md={12} sm={12} xs={12}>
                     <Row className='text-center'>
                         <Col lg={6} md={6} sm={12} s={12}>
-                            <Form className="onboardForm">
+                            <Form onSubmit={ this.formSubmit } className="onboardForm">
                                 <h4>USER SIGN IN</h4>
-                                <input type="text" className='form-control m-2' name="" placeholder='Enter Valid Email' />
-                                <input type="text" className='form-control m-2' name="" placeholder='Enter Your Password' />
-                                <Button className='btn btn-block m-2 site-btn-login'>Sign In</Button>
+                                <input type="text" className='form-control m-2' name="" placeholder='Enter Valid Email' onChange={(e) => this.setState({email:e.target.value})} />
+                                <input type="text" className='form-control m-2' name="" placeholder='Enter Your Password' onChange={(e) => this.setState({password:e.target.value})} />
+                                <Button type="submit" className='btn btn-block m-2 site-btn-login'>Sign In</Button>
 
                                 <br /><br />
                                 <hr />

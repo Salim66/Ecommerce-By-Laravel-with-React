@@ -32,6 +32,8 @@ class AppURL {
         return this.baseURL+"/search/"+searchKey;
     }
 
+    static userLogin = this.baseURL+"/login";
+
 }
 
 // export default AppURL
