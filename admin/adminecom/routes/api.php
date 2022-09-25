@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\VisitorController;
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\ForgetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login']);
 // Register Route
 Route::post('/register', [AuthController::class, 'register']);
+// Forgot Password Route
+Route::post('/forget-password', [ForgetController::class, 'forgetPassword']);
 //////////////////// User Authentication End ////////////////////////
 
 
