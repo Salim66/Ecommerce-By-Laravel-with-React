@@ -40,7 +40,7 @@ class UserLogin extends Component {
 
     // after successuflly logged in then redirect to user profile page
     if(this.state.loggedIn){
-      <Navigate to="/profile" />
+      return <Navigate to="/profile" />
     }
 
     return (

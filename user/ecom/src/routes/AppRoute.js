@@ -1,5 +1,8 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import AppURL from '../api/AppURL';
+import NavMenuDesktop from '../components/Common/NavMenuDesktop';
 import AboutPage from '../pages/AboutPage';
 import CartPage from '../pages/CartPage';
 import ContactPage from '../pages/ContactPage';
@@ -20,17 +23,42 @@ import UserLoginPage from '../pages/UserLoginPage';
 import UserRegisterPage from '../pages/UserRegisterPage';
 
 export class AppRoute extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      user: {}
+    }
+  }
+
+  componentDidMount(){
+    axios.get(AppURL.userData)
+    .then(res => {
+      this.setUser(res.data);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
+  setUser = (user) => {
+    this.setState({user:user});
+  }
+
   render() {
     return (
       <>
+        <NavMenuDesktop user={this.state.user} setUser={this.setuser} />
+        
         <Routes>
+
             <Route path="/" element={ <HomePage /> } />
 
             <Route path="/login" element={ <UserLoginPage /> } />
             <Route path="/register" element={ <UserRegisterPage /> } />
             <Route path="/forget" element={ <ForgetPasswordPage /> } />
             <Route path="/reset/:id" element={ <ResetPasswordPage /> } />
-            <Route path="/profile" element={ <ProfilePage /> } />
+            <Route path="/profile" element={ <ProfilePage user={this.state.user} setUser={this.setuser} /> } />
 
 
             <Route path="/contact" element={ <ContactPage /> } />
