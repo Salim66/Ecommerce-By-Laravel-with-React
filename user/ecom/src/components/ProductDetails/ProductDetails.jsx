@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Button, Form, Breadcrumb } from 'react-bootstrap';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
+import InnerImageZoom from 'react-inner-image-zoom';
 
 class ProductDetails extends Component {
 
@@ -67,7 +69,13 @@ class ProductDetails extends Component {
                 <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
                     <Row>
                         <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
+
                         <img id='previewImg' className="big_image" src={productList.image} />
+
+                        <div className='big_image'>
+                            <InnerImageZoom zoomScale={1.8} zoomType={"hover"} src={productList.image} zoomSrc={productList.image} />
+                        </div>
+
                         <Container  className="my-3">
                             <Row>
                                     <Col className="p-0 m-0"  md={3} lg={3} sm={3} xs={3}>
