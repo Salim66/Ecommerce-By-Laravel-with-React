@@ -61,6 +61,10 @@ export class NavMenuDesktop extends Component {
     }
   }
 
+  logout = () => {
+    localStorage.clear();
+  }
+
 
 
   render() {
@@ -73,7 +77,7 @@ export class NavMenuDesktop extends Component {
           <Link to='/notification' className='btn'><i className='fa fa-bell h4'></i><sup><span className='badge text-white bg-danger'>5</span></sup></Link>
           <a href="#" className='btn'><i className='fa fa-mobile-alt h4'></i></a>
           <Link to='/profile' className='btn h4'>PROFILE</Link>
-          <Link to='/register' className='btn h4'>LOGOUT</Link>
+          <Link to='/' onClick={ this.logout } className='btn h4'>LOGOUT</Link>
           <Link to="/cart" type="button" className='cart-btn'><i className='fa fa-shopping-cart'></i> 3 Items </Link>
         </>
       )
