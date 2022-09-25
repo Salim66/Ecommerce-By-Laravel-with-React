@@ -4,6 +4,8 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { Link, Navigate } from 'react-router-dom';
 import AppURL from '../../api/AppURL';
 import Login from '../../assets/images/login.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class UserLogin extends Component {
 
@@ -32,7 +34,9 @@ class UserLogin extends Component {
       this.props.setUser(res.data.user);
     })
     .catch(error => {
-
+      toast.error(error.response.data.message, {
+        position: "top-right"
+      });
     })
 
   }
@@ -70,6 +74,7 @@ class UserLogin extends Component {
                     </Row>
                 </Col>
             </Row>
+            <ToastContainer />
         </Container>
       </>
     )
