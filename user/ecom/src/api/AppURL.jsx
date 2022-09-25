@@ -34,6 +34,7 @@ class AppURL {
 
     static userLogin = this.baseURL+"/login";
     static userData = this.baseURL+"/user";
+    static userRegister = this.baseURL+"/register";
 
 }
 
