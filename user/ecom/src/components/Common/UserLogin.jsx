@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import AppURL from '../../api/AppURL';
 import Login from '../../assets/images/login.png';
 
@@ -12,7 +12,8 @@ class UserLogin extends Component {
     this.state = {
       email: "",
       password: "",
-      message: ""
+      message: "",
+      loggedIn: false
     }
   }
 
@@ -26,15 +27,22 @@ class UserLogin extends Component {
 
     axios.post(AppURL.userLogin, data)
     .then(res => {
-
+      localStorage.setItem('token', res.data.token);
+      this.setState({loggedIn:true});
     })
     .catch(error => {
-      
+
     })
 
   }
 
   render() {
+
+    // after successuflly logged in then redirect to user profile page
+    if(this.state.loggedIn){
+      <Navigate to="/profile" />
+    }
+
     return (
       <>
         <Container>
