@@ -49,6 +49,10 @@ export class UserRegister extends Component {
         return <Navigate to="/profile" />
     }
 
+    if(localStorage.getItem('token')){
+        return <Navigate to='/profile' />
+    }
+
     return (
         <Container>
             <Row className='p-2'>
