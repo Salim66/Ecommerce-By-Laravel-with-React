@@ -7,10 +7,18 @@ import InnerImageZoom from 'react-inner-image-zoom';
 
 class ProductDetails extends Component {
 
+    constructor(){
+        super();
+        this.state = {
+            previewImg: ""
+        }
+    }
+
     imgOnClick = (e) => {
         let select_image = e.target.getAttribute('src');
-        let preview_image = document.getElementById('previewImg');
-        ReactDOM.findDOMNode(preview_image).setAttribute('src', select_image);
+        // let preview_image = document.getElementById('previewImg');
+        // ReactDOM.findDOMNode(preview_image).setAttribute('src', select_image);
+        this.setState({previewImg: select_image});
     }
 
     priceOption(price, special_price){
@@ -54,6 +62,10 @@ class ProductDetails extends Component {
         sizeDiv = 'd-none';
     }
 
+    if(this.state.previewImg === ""){
+        this.setState({ previewImg: productList.image })
+    }
+
     return (
       <>
         <Container  className="BetweenTwoSection" fluid={true}>
@@ -70,10 +82,10 @@ class ProductDetails extends Component {
                     <Row>
                         <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
 
-                        <img id='previewImg' className="big_image" src={productList.image} />
+                        {/* <img id='previewImg' className="big_image" src={productList.image} /> */}
 
                         <div className='big_image'>
-                            <InnerImageZoom zoomScale={1.8} zoomType={"hover"} src={productList.image} zoomSrc={productList.image} />
+                            <InnerImageZoom zoomScale={1.8} zoomType={"hover"} src={this.state.previewImg} zoomSrc={this.state.previewImg} />
                         </div>
 
                         <Container  className="my-3">
