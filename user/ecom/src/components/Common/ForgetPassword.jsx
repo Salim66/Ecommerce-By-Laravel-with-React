@@ -4,6 +4,8 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import AppURL from '../../api/AppURL';
 import Forget from '../../assets/images/forget.jpg';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class ForgetPassword extends Component {
 
@@ -24,10 +26,15 @@ class ForgetPassword extends Component {
     
         axios.post(AppURL.userForgetPassword, data)
         .then(res => {
-          console.log(res);
+        //   console.log(res);
+          toast.success(res.data.message, {
+            position: "top-right"
+          });
         })
         .catch(error => {
-            console.log(error);
+            toast.error(error.response.data.message, {
+                position: "top-right"
+            });
         })
     
     }
@@ -51,6 +58,7 @@ class ForgetPassword extends Component {
                     </Row>
                 </Col>
             </Row>
+            <ToastContainer />
         </Container>
     )
   }
