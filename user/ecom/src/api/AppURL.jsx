@@ -42,6 +42,10 @@ class AppURL {
         return this.baseURL+"/similar/"+code;
     }
 
+    static reviewList(code){
+        return this.baseURL+"/reviewlist/"+code;
+    }
+
 }
 
 // export default AppURL
