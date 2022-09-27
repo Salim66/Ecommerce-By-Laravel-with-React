@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\NotificationController;
+use App\Http\Controllers\Admin\ProductCartController;
 use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\ReviewController;
@@ -75,4 +76,7 @@ Route::get('/similar/{subcategory}', [ProductListController::class, 'similarProd
 
 // get review by user route
 Route::get('/reviewlist/{id}', [ReviewController::class, 'reviewList']);
+
+// add to cart route
+Route::post('/addtocart', [ProductCartController::class, 'addToCart']);
 
