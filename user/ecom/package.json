@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
+    "cogo-toast": "^4.2.3",
     "html-react-parser": "^3.0.4",
     "placeholder-loading": "^0.6.0",
     "react": "^18.2.0",

@@ -6,6 +6,7 @@ import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
 import SuggestedProduct from './SuggestedProduct';
 import ReviewList from './ReviewList';
+import cogoToast from 'cogo-toast';
 
 class ProductDetails extends Component {
 
@@ -39,6 +40,29 @@ class ProductDetails extends Component {
                 <p className='product-price-on-card'>Price: <strike className="text-secondary">{ price }</strike> { special_price }</p>
             )
         }
+    }
+
+    addToCart = () => {
+
+        let isColor = this.state.isColor;
+        let isSize = this.state.isSize;
+        let color = this.state.color;
+        let size = this.state.size;
+        let quantity = this.state.quantity;
+        let productCode = this.state.productCode;
+
+        if(isColor === "YES" && color.length === 0){
+            cogoToast.error('Please select any color', {position: 'top-right'});
+        }else if (isSize === "YES" && size.length === 0){
+            cogoToast.error('Please select any size', {position: 'top-right'});
+        }else if(quantity.length === 0){
+            cogoToast.error('Please select quantity', {position: 'top-right'});
+        }else if(!localStorage.getItem('token')){
+            cogoToast.warn('Please you have to logged in first', {position: 'top-right'});
+        }else {
+
+        }
+
     }
 
     colorOnChange = (e) => {
