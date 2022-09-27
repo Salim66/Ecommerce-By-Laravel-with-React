@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\ProductListController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\VisitorController;
@@ -71,4 +72,7 @@ Route::get('/search/{key}', [ProductListController::class, 'productListBySearch'
 
 // get product by similar product route
 Route::get('/similar/{subcategory}', [ProductListController::class, 'similarProduct']);
+
+// get review by user route
+Route::get('/reviewlist/{id}', [ReviewController::class, 'reviewList']);
 
