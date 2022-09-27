@@ -115,6 +115,7 @@ class ProductDetails extends Component {
                         <h6 className="mt-2">Sub-Category: <b>{ productList.subcategory }</b></h6>
                         <h6 className="mt-2">Brand: <b>{ productList.brand }</b></h6>
                         <h6 className="mt-2">Remark: <b>{ productList.remark }</b></h6>
+                        <h6 className="mt-2">Product Code: <b>{ productList.product_code }</b></h6>
 
                         <div className={ colorDiv }>
                             <h6 className="mt-2">Choose Color</h6>
