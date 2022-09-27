@@ -56,4 +56,15 @@ class ProductListController extends Controller
         $result = ProductList::where('title', 'LIKE', "%{$key}%")->orWhere('brand', 'LIKE', "%{$key}%")->get();
         return $result;
     }
+
+    /**
+     * @access public
+     * @routes /api/similar/{subcategory}
+     * @method GET
+     */
+    public function similarProduct(Request $request){
+        $subcategory = $request->subcategory;
+        $productList = ProductList::where('subcategory', $subcategory)->orderBy('id', 'DESC')->limit(6)->get();
+        return $productList;
+    }
 }
