@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
+import SuggestedProduct from './SuggestedProduct';
 
 class ProductDetails extends Component {
 
@@ -178,6 +179,7 @@ class ProductDetails extends Component {
                 </Col>
             </Row>
         </Container>
+        <SuggestedProduct subcategory={ productList.subcategory } />
       </>
     )
   }

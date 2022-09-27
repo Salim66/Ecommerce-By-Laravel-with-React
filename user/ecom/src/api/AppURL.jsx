@@ -38,6 +38,10 @@ class AppURL {
     static userForgetPassword = this.baseURL+"/forget-password";
     static userResetPassword = this.baseURL+"/reset-password";
 
+    static similarProduct(code){
+        return this.baseURL+"/similar/"+code;
+    }
+
 }
 
 // export default AppURL

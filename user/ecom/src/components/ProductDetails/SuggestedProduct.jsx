@@ -1,9 +1,36 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, Form, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import AppURL from '../../api/AppURL';
 
 class SuggestedProduct extends Component {
+
+    
+  constructor(){
+    super();
+    this.state = {
+      productData : []
+    }
+  }
+
+  componentDidMount(){
+    let code = this.props.subcategory;
+    axios.get(AppURL.similarProduct(code))
+    .then(res => {
+      this.setState({ productData: res.data });
+    })
+    .catch(error => {
+      console.log('error');
+    })
+  }
+
+
+
   render() {
+  
+    let productData = this.state.productData;
+
     return (
       <>
         <Container className='text-center' fluid={true}>
@@ -15,62 +42,37 @@ class SuggestedProduct extends Component {
 
             <Row>
 
-            <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Link to='/productdetails'>
-                <Card className="image-box card">
-                    <img className='center' src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/b/o/n/-original-imagg3myvj6f3pez.jpeg?q=70" alt="product-image" />
-                    <Card.Body>
-                    <p className='product-name-on-card'>Realme C30s (Stripe Blue, 32 GB)</p>
-                    <p className='product-price-on-card'>Price: $100</p>
-                    </Card.Body>
-                </Card>
-                </Link>
-            </Col>
-            <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                <img className='center' src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/6/9/w/-original-imagg34wducvv4ya.jpeg?q=70" alt="product-image" />
-                <Card.Body>
-                    <p className='product-name-on-card'>MOTOROLA Edge 30 Fusion (Solar Gold, 128 GB)</p>
-                    <p className='product-price-on-card'>Price: $150</p>
-                </Card.Body>
-                </Card>
-            </Col>
-            <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                <img className='center' src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/s/s/a/-original-imaghsptxpgsqqry.jpeg?q=70" alt="product-image" />
-                <Card.Body>
-                    <p className='product-name-on-card'>POCO M5 (Icy Blue, 64 GB)</p>
-                    <p className='product-price-on-card'>Price: $60</p>
-                </Card.Body>
-                </Card>
-            </Col>
-            <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                <img className='center' src="https://rukminim1.flixcart.com/image/416/416/l0tweq80/mobile/x/f/u/-original-imagcgtghym8theg.jpeg?q=70" alt="product-image" />
-                <Card.Body>
-                    <p className='product-name-on-card'>REDMI 10 (Midnight Black, 64 GB)</p>
-                    <p className='product-price-on-card'>Price: $70</p>
-                </Card.Body>
-                </Card>
-            </Col>
-            <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                <img className='center' src="https://rukminim1.flixcart.com/image/416/416/l2jcccw0/mobile/h/x/3/-original-imagduwqakhhkrse.jpeg?q=70" alt="product-image" />
-                <Card.Body>
-                    <p className='product-name-on-card'>OPPO K10 (Black Carbon, 128 GB)</p>
-                    <p className='product-price-on-card'>Price: $20</p>
-                </Card.Body>
-                </Card>
-            </Col>
-            <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                <img className='center' src="https://rukminim1.flixcart.com/image/416/416/ky7lci80/mobile/l/w/z/-original-imagahvnzfgdg8jy.jpeg?q=70" alt="product-image" />
-                <Card.Body>
-                    <p className='product-name-on-card'>ASUS ROG 5s (Phantom Black, 256 GB)</p>
-                    <p className='product-price-on-card'>Price: $570</p>
-                </Card.Body>
-                </Card>
-            </Col>
+            {
+                productData.map((data, i) => {
+                    if(data.special_price == 'na'){
+                        return  <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
+                            <Link className='text-link' to={'/productdetails/'+data.id}>
+                                <Card className="image-box card">
+                                    <img className='center' src={ data.image } alt="product-image" />
+                                    <Card.Body>
+                                    <p className='product-name-on-card'>{ data.title }</p>
+                                    <p className='product-price-on-card'>Price: { data.price }</p>
+                                    </Card.Body>
+                                </Card>
+                            </Link>
+                        </Col>
+                    }else {
+                        return  <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
+                        <Link className='text-link' to={'/productdetails/'+data.id}>
+                            <Card className="image-box card">
+                                <img className='center' src={ data.image } alt="product-image" />
+                                <Card.Body>
+                                <p className='product-name-on-card'>{ data.title }</p>
+                                <p className='product-price-on-card'>Price: <strike className="text-secondary">{ data.price }</strike> { data.special_price }</p>
+                                </Card.Body>
+                            </Card>
+                        </Link>
+                    </Col>
+                    }
+                })
+            }
+           
+            
 
             </Row>
         </Container>

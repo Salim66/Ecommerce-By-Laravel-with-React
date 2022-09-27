@@ -7,7 +7,6 @@ import NavMenuDesktop from '../components/Common/NavMenuDesktop';
 import NavMenuMobile from '../components/Common/NavMenuMobile';
 import SliderLoading from '../components/Placeholder/SliderLoading';
 import ProductDetails from '../components/ProductDetails/ProductDetails';
-import SuggestedProduct from '../components/ProductDetails/SuggestedProduct';
 import axios from 'axios';
 
 const ProductDetailsPage = (props) => {
@@ -63,7 +62,6 @@ const ProductDetailsPage = (props) => {
           </div>
           
           <ProductDetails productData = { productData } />
-          <SuggestedProduct />
   
           <div className='desktop'>
           <FooterDesktop />
