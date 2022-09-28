@@ -45,4 +45,15 @@ class ProductCartController extends Controller
 
         return $result;
     }
+
+    /**
+     * @access private
+     * @routes /api/cartcount
+     * @method GET
+     */
+    public function cartCount(Request $request){
+        $productCode = $request->product_code;
+        $result = ProductCart::where('product_code', $productCode)->count();
+        return $result;
+    }
 }
