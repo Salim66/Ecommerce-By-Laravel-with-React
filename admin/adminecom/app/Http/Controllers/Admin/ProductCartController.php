@@ -53,7 +53,8 @@ class ProductCartController extends Controller
      */
     public function cartCount(Request $request){
         $productCode = $request->product_code;
-        $result = ProductCart::where('product_code', $productCode)->count();
+        // $result = ProductCart::where('product_code', $productCode)->count();
+        $result = ProductCart::count();
         return $result;
     }
 }

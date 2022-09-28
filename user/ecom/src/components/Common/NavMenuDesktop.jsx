@@ -4,6 +4,8 @@ import { Link, Navigate } from 'react-router-dom';
 import Logo from '../../assets/images/easyshop.png';
 import MegaMenuAll from '../Home/MegaMenuAll';
 import Bars from '../../assets/images/bars.png';
+import axios from 'axios';
+import AppURL from '../../api/AppURL';
 
 export class NavMenuDesktop extends Component {
 
@@ -13,11 +15,23 @@ export class NavMenuDesktop extends Component {
       sideNavState: "sideNavClose",
       contentOverState: "ContentOverlayClose",
       searchKey: "",
-      searchRedirectStatus: false
+      searchRedirectStatus: false,
+      cartCount: 0
     }
     this.searchOnChange = this.searchOnChange.bind(this);
     this.searchOnClick = this.searchOnClick.bind(this);
     this.searchRedirect = this.searchRedirect.bind(this);
+  }
+
+  componentDidMount(){
+    let product_code = this.props.product_code;
+    axios.get(AppURL.cartCount(product_code))
+    .then(res => {
+      this.setState({ cartCount: res.data });
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 
 
@@ -78,7 +92,7 @@ export class NavMenuDesktop extends Component {
           <a href="#" className='btn'><i className='fa fa-mobile-alt h4'></i></a>
           <Link to='/profile' className='btn h4'>PROFILE</Link>
           <Link to='/' onClick={ this.logout } className='btn h4'>LOGOUT</Link>
-          <Link to="/cart" type="button" className='cart-btn'><i className='fa fa-shopping-cart'></i> 3 Items </Link>
+          <Link to="/cart" type="button" className='cart-btn'><i className='fa fa-shopping-cart'></i> { this.state.cartCount } Items </Link>
         </>
       )
     }else {
@@ -89,7 +103,7 @@ export class NavMenuDesktop extends Component {
           <a href="#" className='btn'><i className='fa fa-mobile-alt h4'></i></a>
           <Link to='/login' className='btn h4'>LOGIN</Link>
           <Link to='/register' className='btn h4'>Register</Link>
-          <Link to="/cart" type="button" className='cart-btn'><i className='fa fa-shopping-cart'></i> 3 Items </Link>
+          <Link to="/cart" type="button" className='cart-btn'><i className='fa fa-shopping-cart'></i> { this.state.cartCount } Items </Link>
         </>
       )
     }

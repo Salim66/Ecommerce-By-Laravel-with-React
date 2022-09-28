@@ -47,6 +47,9 @@ class AppURL {
     }
 
     static addToCart = this.baseURL+"/addtocart";
+    static cartCount(product_code){
+        return this.baseURL+"/cartcount/"+product_code;
+    }
 
 }
 

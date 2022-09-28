@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, Form, Breadcrumb } from 'react-bootstrap';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
 import SuggestedProduct from './SuggestedProduct';
@@ -22,7 +22,8 @@ class ProductDetails extends Component {
             size: '',
             quantity: '',
             productCode: null,
-            addToCart: "Add To Cart"
+            addToCart: "Add To Cart",
+            cartCountPageRefresh: false
         }
     }
 
@@ -76,6 +77,8 @@ class ProductDetails extends Component {
             .then(res => {
                 cogoToast.success('Product added successfully', {position: 'top-right'});
                 this.setState({ addToCart: "Add To Cart" });
+                this.setState({ cartCountPageRefresh: true });
+                this.pageRefresh();
             })
             .catch(error => {
                 cogoToast.error('Your request is not done! Try Again', {position: 'top-right'});
@@ -98,6 +101,15 @@ class ProductDetails extends Component {
     quantityOnChange = (e) => {
         let quantity = e.target.value;
         this.setState({ quantity: quantity });
+    }
+
+    pageRefresh = () => {
+        if(this.state.cartCountPageRefresh === true){
+            let URL = window.location;
+            return (
+                <Navigate to={URL} />
+            )
+        }
     }
 
   render() {
@@ -260,6 +272,7 @@ class ProductDetails extends Component {
             </Row>
         </Container>
         <SuggestedProduct subcategory={ productList.subcategory } />
+        {this.pageRefresh()}
       </>
     )
   }
