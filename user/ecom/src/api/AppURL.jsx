@@ -46,6 +46,8 @@ class AppURL {
         return this.baseURL+"/reviewlist/"+code;
     }
 
+    static addToCart = this.baseURL+"/addtocart";
+
 }
 
 // export default AppURL

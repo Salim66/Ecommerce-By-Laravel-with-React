@@ -61,7 +61,7 @@ const ProductDetailsPage = (props) => {
           <NavMenuMobile />
           </div>
           
-          <ProductDetails productData = { productData } />
+          <ProductDetails productData = { productData } user={ props.user } />
   
           <div className='desktop'>
           <FooterDesktop />

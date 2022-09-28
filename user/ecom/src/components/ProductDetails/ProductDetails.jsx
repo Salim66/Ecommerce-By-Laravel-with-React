@@ -7,6 +7,8 @@ import InnerImageZoom from 'react-inner-image-zoom';
 import SuggestedProduct from './SuggestedProduct';
 import ReviewList from './ReviewList';
 import cogoToast from 'cogo-toast';
+import AppURL from '../../api/AppURL';
+import axios from 'axios';
 
 class ProductDetails extends Component {
 
@@ -19,7 +21,8 @@ class ProductDetails extends Component {
             color: '',
             size: '',
             quantity: '',
-            productCode: null
+            productCode: null,
+            addToCart: "Add To Cart"
         }
     }
 
@@ -50,6 +53,7 @@ class ProductDetails extends Component {
         let size = this.state.size;
         let quantity = this.state.quantity;
         let productCode = this.state.productCode;
+        let email = this.props.user.email;
 
         if(isColor === "YES" && color.length === 0){
             cogoToast.error('Please select any color', {position: 'top-right'});
@@ -60,7 +64,23 @@ class ProductDetails extends Component {
         }else if(!localStorage.getItem('token')){
             cogoToast.warn('Please you have to logged in first', {position: 'top-right'});
         }else {
+            this.setState({ addToCart: "Adding....." });
+            let myFormData = new FormData();
+            myFormData.append("color", color);
+            myFormData.append("size", size);
+            myFormData.append("quantity", quantity);
+            myFormData.append("product_code", productCode);
+            myFormData.append("email", email);
 
+            axios.post(AppURL.addToCart, myFormData)
+            .then(res => {
+                cogoToast.success('Product added successfully', {position: 'top-right'});
+                this.setState({ addToCart: "Add To Cart" });
+            })
+            .catch(error => {
+                cogoToast.error('Your request is not done! Try Again', {position: 'top-right'});
+                this.setState({ addToCart: "Add To Cart" });
+            })
         }
 
     }
@@ -217,7 +237,7 @@ class ProductDetails extends Component {
                         
 
                         <div className="input-group mt-3">
-                            <button className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  Add To Cart</button>
+                            <button onClick={ this.addToCart } className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  { this.state.addToCart }</button>
                             <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
                             <button className="btn btn-primary m-1"> <i className="fa fa-heart"></i> Favourite</button>
                         </div>
