@@ -90,3 +90,5 @@ Route::get('/favourite/{product_code}/{email}', [FavouriteController::class, 'ad
 // get favourite list product route
 Route::get('/favouritelist/{email}', [FavouriteController::class, 'favouriteList']);
 
+// remove favourite product route
+Route::get('/favourite-remove/{product_code}/{email}', [FavouriteController::class, 'removeFavourite']);
