@@ -30,4 +30,15 @@ class FavouriteController extends Controller
         return $result;
 
     }
+
+    /**
+     * @access private
+     * @routes /api/favouritelist/{email}
+     * @method GET
+     */
+    public function favouriteList(Request $request){
+        $email = $request->email;
+        $result = Favourite::where('email', $email)->get();
+        return $result;
+    }
 }
