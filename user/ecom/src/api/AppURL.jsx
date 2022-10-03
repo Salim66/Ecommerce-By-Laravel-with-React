@@ -51,6 +51,10 @@ class AppURL {
         return this.baseURL+"/cartcount/"+product_code;
     }
 
+    static addToFavourite(product_code, email){
+        return this.baseURL+"/favourite/"+product_code+"/"+email;
+    }
+
 }
 
 // export default AppURL

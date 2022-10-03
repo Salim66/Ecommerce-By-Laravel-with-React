@@ -23,7 +23,8 @@ class ProductDetails extends Component {
             quantity: '',
             productCode: null,
             addToCart: "Add To Cart",
-            cartCountPageRefresh: false
+            cartCountPageRefresh: false,
+            addToFavourite: "Favourite"
         }
     }
 
@@ -83,6 +84,32 @@ class ProductDetails extends Component {
             .catch(error => {
                 cogoToast.error('Your request is not done! Try Again', {position: 'top-right'});
                 this.setState({ addToCart: "Add To Cart" });
+            })
+        }
+
+    }
+
+    addToFavourite = () => {
+
+        this.setState({ addToFavourite: "Adding...." });
+        let productCode = this.state.productCode;
+        let email = this.props.user.email;
+
+        if(!localStorage.getItem('token')){
+            cogoToast.warn('Please you have to logged in first', {position: 'top-right'});
+        }else {
+
+            this.setState({ addToFavourite: "Adding....." });
+
+            axios.get(AppURL.addToFavourite(productCode, email))
+            .then(res => {
+                cogoToast.success('Product added successfully', {position: 'top-right'});
+                this.setState({ addToFavourite: "Favourite" });
+                this.pageRefresh();
+            })
+            .catch(error => {
+                cogoToast.error('Your request is not done! Try Again', {position: 'top-right'});
+                this.setState({ addToCart: "Favourite" });
             })
         }
 
@@ -251,7 +278,7 @@ class ProductDetails extends Component {
                         <div className="input-group mt-3">
                             <button onClick={ this.addToCart } className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  { this.state.addToCart }</button>
                             <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
-                            <button className="btn btn-primary m-1"> <i className="fa fa-heart"></i> Favourite</button>
+                            <button onClick={ this.addToFavourite } className="btn btn-primary m-1"> <i className="fa fa-heart"></i> { this.state.addToFavourite }</button>
                         </div>
                         </Col>
                     </Row>
