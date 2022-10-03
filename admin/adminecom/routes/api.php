@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\FavouriteController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ProductCartController;
 use App\Http\Controllers\Admin\ProductDetailsController;
@@ -82,4 +83,7 @@ Route::post('/addtocart', [ProductCartController::class, 'addToCart']);
 
 // get cart count by product code route
 Route::get('/cartcount/{product_code}', [ProductCartController::class, 'cartCount']);
+
+// add favourite product route
+Route::get('/favourite/{product_code}/{email}', [FavouriteController::class, 'addFavourite']);
 
