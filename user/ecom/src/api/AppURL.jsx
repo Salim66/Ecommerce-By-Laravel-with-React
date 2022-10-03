@@ -55,6 +55,10 @@ class AppURL {
         return this.baseURL+"/favourite/"+product_code+"/"+email;
     }
 
+    static favouriteList(email){
+        return this.baseURL+"/favouritelist/"+email;
+    }
+
 }
 
 // export default AppURL

@@ -22,7 +22,7 @@ class FavouritePage extends Component {
             <NavMenuMobile />
             </div>
             
-            <Favourite />
+            <Favourite user={ this.props.user } />
 
             <div className='desktop'>
             <FooterDesktop />
