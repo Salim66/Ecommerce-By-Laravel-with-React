@@ -1,7 +1,8 @@
-import axios from 'axios';
 import React, { Component } from 'react';
+import axios from 'axios';
+import cogoToast from 'cogo-toast';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import AppURL from '../../api/AppURL';
 import FeaturedLoading from '../Placeholder/FeaturedLoading';
 
@@ -12,7 +13,8 @@ class Favourite extends Component {
     this.state = {
       favourite_data : [],
       loaderDiv: '',
-      mainDiv: 'd-none'
+      mainDiv: 'd-none',
+      cartCountPageRefresh: false
     }
   }
 
@@ -26,6 +28,36 @@ class Favourite extends Component {
       console.log(error);
     })
 
+  }
+
+  handleDataRemove = (e) => {
+    let productCode = e.target.getAttribute('data-code');
+    let email = this.props.user.email;
+
+    if(!localStorage.getItem('token')){
+        cogoToast.warn('Please you have to logged in first', {position: 'top-right'});
+    }else {
+
+        axios.get(AppURL.favouriteRemove(productCode, email))
+        .then(res => {
+            cogoToast.success('Favourite product remove successfully', {position: 'top-right'});
+            this.setState({ cartCountPageRefresh: true });
+            this.pageRefresh();
+        })
+        .catch(error => {
+            cogoToast.error('Your request is not done! Try Again', {position: 'top-right'});
+        })
+    }
+
+  }
+
+  pageRefresh = () => {
+    if(this.state.cartCountPageRefresh === true){
+        let URL = window.location;
+        return (
+            <Navigate to={URL} />
+        )
+    }
   }
 
   render() {
@@ -50,21 +82,22 @@ class Favourite extends Component {
           {
             favourite_data.map((data, i) => (
               <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                  <Link to={'/productdetails/'+data.id}>
                     <Card className="image-box card">
-                      <img className='center' src={ data.image } alt="product-image" />
+                      <Link to={'/productdetails/'+data.id}>
+                        <img className='center' src={ data.image } alt="product-image" />
+                      </Link>
                       <Card.Body>
                         <p className='product-name-on-card'>{ data.product_name }</p>
-                        <Button className='btn btn-sm'><i className='fa fa-trash-alt'></i> Remove </Button>
+                        <Button onClick={ this.handleDataRemove } data-code={ data.product_code } className='btn btn-sm'><i className='fa fa-trash-alt'></i> Remove </Button>
                       </Card.Body>
                     </Card>
-                  </Link>
               </Col>
             ))
           }
 
         </Row>
         </div>
+        { this.pageRefresh() }
       </Container>
     )
   }

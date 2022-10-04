@@ -59,6 +59,10 @@ class AppURL {
         return this.baseURL+"/favouritelist/"+email;
     }
 
+    static favouriteRemove(product_code, email){
+        return this.baseURL+"/favourite-remove/"+product_code+"/"+email;
+    }
+
 }
 
 // export default AppURL
