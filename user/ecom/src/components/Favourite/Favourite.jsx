@@ -62,6 +62,10 @@ class Favourite extends Component {
 
   render() {
 
+    if(!localStorage.getItem('token')){
+      return <Navigate to='/login' />
+    }
+
     let favourite_data = this.state.favourite_data;
 
     return (
