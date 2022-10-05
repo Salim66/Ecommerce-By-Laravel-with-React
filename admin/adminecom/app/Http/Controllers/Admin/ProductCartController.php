@@ -57,4 +57,15 @@ class ProductCartController extends Controller
         $result = ProductCart::count();
         return $result;
     }
+
+    /**
+     * @access private
+     * @routes /api/cartlist
+     * @method GET
+     */
+    public function cartList(Request $request){
+        $email = $request->email;
+        $result = ProductCart::where('email', $email)->get();
+        return $result;
+    }
 }
