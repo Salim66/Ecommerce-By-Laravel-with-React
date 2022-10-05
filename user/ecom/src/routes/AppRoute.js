@@ -70,7 +70,7 @@ export class AppRoute extends Component {
             <Route path="/productdetails/:code" element={ <ProductDetailsPage user={this.state.user} /> } />
             <Route path="/notification" element={ <NotificationPage /> } />
             <Route path="/favourite" element={ <FavouritePage user={this.state.user} /> } />
-            <Route path="/cart" element={ <CartPage /> } />
+            <Route path="/cart" element={ <CartPage user={this.state.user} /> } />
             <Route path="/productcategory/:category" element={ <ProductCategoryPage /> } />
             <Route path="/productsubcategory/:category/:subcategory" element={ <ProductSubCategoryPage /> } />
             <Route path="/searchbykey/:searchKey" element={ <SearchPage /> } />

@@ -63,6 +63,10 @@ class AppURL {
         return this.baseURL+"/favourite-remove/"+product_code+"/"+email;
     }
 
+    static cartList(email){
+        return this.baseURL+"/cartlist/"+email;
+    }
+
 }
 
 // export default AppURL

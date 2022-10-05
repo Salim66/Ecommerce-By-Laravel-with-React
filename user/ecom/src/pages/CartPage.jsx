@@ -21,7 +21,7 @@ class CartPage extends Component {
           <NavMenuMobile />
           </div>
           
-          <Cart />
+          <Cart user={ this.props.user } />
 
           <div className='desktop'>
           <FooterDesktop />
