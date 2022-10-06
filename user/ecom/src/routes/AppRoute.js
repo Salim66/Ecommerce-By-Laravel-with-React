@@ -10,6 +10,7 @@ import FavouritePage from '../pages/FavouritePage';
 import ForgetPasswordPage from '../pages/ForgetPasswordPage';
 import HomePage from '../pages/HomePage';
 import NotificationPage from '../pages/NotificationPage';
+import OrderListPage from '../pages/OrderListPage';
 import PrivacyPage from '../pages/PrivacyPage';
 import ProductCategoryPage from '../pages/ProductCategoryPage';
 import ProductDetailsPage from '../pages/ProductDetailsPage';
@@ -71,6 +72,7 @@ export class AppRoute extends Component {
             <Route path="/notification" element={ <NotificationPage /> } />
             <Route path="/favourite" element={ <FavouritePage user={this.state.user} /> } />
             <Route path="/cart" element={ <CartPage user={this.state.user} /> } />
+            <Route path="/orderlist" element={ <OrderListPage /> } />
             <Route path="/productcategory/:category" element={ <ProductCategoryPage /> } />
             <Route path="/productsubcategory/:category/:subcategory" element={ <ProductSubCategoryPage /> } />
             <Route path="/searchbykey/:searchKey" element={ <SearchPage /> } />

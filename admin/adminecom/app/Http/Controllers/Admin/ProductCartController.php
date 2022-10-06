@@ -172,4 +172,15 @@ class ProductCartController extends Controller
 
         return $cartInsertDeleteResult;
     }
+
+    /**
+     * @access private
+     * @routes /api/orderListByUser
+     * @method GET
+     */
+    public function orderListByUser(Request $request){
+        $email = $request->email;
+        $result = CartOrder::where('email', $email)->orderBy('id', 'desc')->get();
+        return $result;
+    }
 }

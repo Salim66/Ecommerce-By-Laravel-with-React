@@ -107,3 +107,6 @@ Route::get('/cartitemdecrement/{id}/{quantity}/{price}', [ProductCartController:
 
 // cart order route
 Route::post('/cartorder', [ProductCartController::class, 'cartOrder']);
+
+// cart order list by user route
+Route::get('/orderlistbyuser/{email}', [ProductCartController::class, 'orderListByUser']);
