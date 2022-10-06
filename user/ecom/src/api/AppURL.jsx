@@ -71,6 +71,14 @@ class AppURL {
         return this.baseURL+"/removecartlist/"+id;
     }
 
+    static cartItemIncrement(id, quantity, price){
+        return this.baseURL+"/cartitemincrement/"+id+"/"+quantity+"/"+price;
+    }
+
+    static cartItemDecrement(id, quantity, price){
+        return this.baseURL+"/cartitemdecrement/"+id+"/"+quantity+"/"+price;
+    }
+
 }
 
 // export default AppURL

@@ -41,6 +41,28 @@ class Cart extends Component {
         })
     }
 
+    cartItemIncrement = (id, quantity, unit_price) => {
+        axios.get(AppURL.cartItemIncrement(id, quantity, unit_price))
+        .then(res => {
+            cogoToast.success('Item Increment successfully', {position: 'top-right'});
+            this.setState({ cartCountPageRefresh: true });
+        })
+        .catch(error => {
+            cogoToast.error(error.message, {position: 'top-right'});
+        })
+    }
+
+    cartItemDecrement = (id, quantity, unit_price) => {
+        axios.get(AppURL.cartItemDecrement(id, quantity, unit_price))
+        .then(res => {
+            cogoToast.success('Item Decrement successfully', {position: 'top-right'});
+            this.setState({ cartCountPageRefresh: true });
+        })
+        .catch(error => {
+            cogoToast.error(error.message, {position: 'top-right'});
+        })
+    }
+
     pageRefresh = () => {
         if(this.state.cartCountPageRefresh === true){
             let URL = window.location;
@@ -81,8 +103,10 @@ class Cart extends Component {
                                 </Col>
 
                                 <Col md={3} lg={3} sm={12} xs={12}>
-                                <input placeholder="2" className="form-control text-center" type="number" />
-                                <Button onClick={ () => this.removeCartList(data.id) } className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
+                                    
+                                  <Button onClick={ () => this.removeCartList(data.id) } className="btn btn-lg mt-2 mx-2  site-btn"><i className="fa fa-trash-alt"></i></Button>
+                                  <Button onClick={ () => this.cartItemIncrement(data.id, data.quantity, data.unit_price) } className="btn btn-lg mt-2 mx-2  site-btn"><i className="fa fa-plus"></i></Button>
+                                  <Button onClick={ () => this.cartItemDecrement(data.id, data.quantity, data.unit_price) } className="btn btn-lg mt-2 mx-2  site-btn"><i className="fa fa-minus"></i></Button>
 
                                 </Col>
                         </Row>              
