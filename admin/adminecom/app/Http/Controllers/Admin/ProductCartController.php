@@ -115,4 +115,13 @@ class ProductCartController extends Controller
         ]);
         return $result;
     }
+
+    /**
+     * @access private
+     * @routes /api/cartorder
+     * @method POST
+     */
+    public function cartOrder(Request $request){
+
+    }
 }

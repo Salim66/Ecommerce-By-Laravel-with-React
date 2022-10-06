@@ -78,6 +78,8 @@ class Cart extends Component {
 
     let cart_data = this.state.cart_data;
 
+    let totalDueAmount = 0;
+
     return (
       <>
         <Container fluid={true}>   
@@ -86,8 +88,9 @@ class Cart extends Component {
             <Row>
 
                 {
-                    cart_data.map((data, i) => (
-                <Col key={i} className="p-1" lg={7} md={7} sm={12} xs={12} >
+                    cart_data.map((data, i) => {
+                        totalDueAmount = totalDueAmount + parseInt(data.total_price);
+                       return <Col key={i} className="p-1" lg={7} md={7} sm={12} xs={12} >
                     <Card >                
                         <Card.Body>
                         <Row>
@@ -113,7 +116,7 @@ class Cart extends Component {
                         </Card.Body>               
                     </Card>
                 </Col> 
-                    ))
+                    })
                 }
                 
 
@@ -124,9 +127,9 @@ class Cart extends Component {
                 <Col className="p-1" lg={5} md={5} sm={12} xs={12} >
                     <Card >                
                         <Card.Body>
-                            <h4 className='text-danger'>Total Due: $</h4>
+                            <h4 className='text-danger'>Total Due: { totalDueAmount }$</h4>
                             <form action="">
-                                <div className="form-rgoup">
+                                <div className="my-2">
                                     <label htmlFor="">Choose City</label>
                                     <select name="city" id="" className='form-control'>
                                         <option value="">Choose</option>
@@ -138,7 +141,7 @@ class Cart extends Component {
                                         <option value="Panjab">Panjab</option>
                                     </select>
                                 </div>
-                                <div className="form-rgoup">
+                                <div className="my-2">
                                     <label htmlFor="">Choose Payment Method</label>
                                     <select name="payment" id="" className='form-control'>
                                         <option value="">Choose</option>
@@ -146,11 +149,11 @@ class Cart extends Component {
                                         <option value="Stripe">Stripe</option>
                                     </select>
                                 </div>
-                                <div className="form-rgoup">
+                                <div className="my-2">
                                     <label htmlFor="">Your Name</label>
                                     <input type="text" name="name" className='form-control' />
                                 </div>
-                                <div className="form-rgoup">
+                                <div className="my-2">
                                     <label htmlFor="">Delivery Address</label>
                                     <textarea name="delivey_address" id="" cols="30" rows="5" className='form-control' ></textarea>
                                 </div>

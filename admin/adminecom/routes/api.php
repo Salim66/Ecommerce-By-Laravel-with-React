@@ -104,3 +104,6 @@ Route::get('/cartitemincrement/{id}/{quantity}/{price}', [ProductCartController:
 
 // quantity decrement in cart route
 Route::get('/cartitemdecrement/{id}/{quantity}/{price}', [ProductCartController::class, 'cartItemDecrement']);
+
+// cart order route
+Route::post('/cartorder', [ProductCartController::class, 'cartOrder']);
