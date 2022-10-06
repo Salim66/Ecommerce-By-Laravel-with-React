@@ -68,4 +68,15 @@ class ProductCartController extends Controller
         $result = ProductCart::where('email', $email)->get();
         return $result;
     }
+
+    /**
+     * @access private
+     * @routes /api/removecartlist
+     * @method GET
+     */
+    public function removeCartList(Request $request){
+        $id = $request->id;
+        $result = ProductCart::where('id', $id)->delete();
+        return $result;
+    }
 }

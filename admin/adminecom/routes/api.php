@@ -95,3 +95,6 @@ Route::get('/favourite-remove/{product_code}/{email}', [FavouriteController::cla
 
 // get cart list product route
 Route::get('/cartlist/{email}', [ProductCartController::class, 'cartList']);
+
+// remove cart list product route
+Route::get('/removecartlist/{id}', [ProductCartController::class, 'removeCartList']);
