@@ -15,6 +15,7 @@ class Cart extends Component {
           loaderDiv: '',
           mainDiv: 'd-none',
           cartCountPageRefresh: false,
+          pageRedirectStaus:false,
           confirmBtn: "Confirm Order",
           city: '',
           payment: '',
@@ -77,6 +78,26 @@ class Cart extends Component {
         }
     }
 
+    cityOnSubmit = (e) => {
+       let city = e.target.value;
+       this.setState({ city: city });
+    }
+
+    paymentOnSubmit = (e) => {
+       let payment = e.target.value;
+       this.setState({ payment: payment });
+    }
+
+    nameOnSubmit = (e) => {
+       let name = e.target.value;
+       this.setState({ name: name });
+    }
+
+    addressOnSubmit = (e) => {
+       let delivery_address = e.target.value;
+       this.setState({ delivery_address: delivery_address });
+    }
+
 
     orderSubmit = () => {
         let city = this.state.city;
@@ -93,9 +114,38 @@ class Cart extends Component {
         }else if(!delivery_address){
             cogoToast.warn('Please select any city', {position: 'top-right'});
         }else {
-            
+
+            let invoice_no = new Date().getTime();
+            let myFormData = new FormData();
+            myFormData.append('city', city);
+            myFormData.append('payment_method', payment_method);
+            myFormData.append('name', name);
+            myFormData.append('delivery_address', delivery_address);
+            myFormData.append('email', this.props.user.email);
+            myFormData.append('invoice_no', invoice_no);
+            myFormData.append('delivery_charge', "00");
+
+            axios.post(AppURL.cartOrder, myFormData)
+            .then(res => {
+                cogoToast.success('Order Request Received', {position: 'top-right'});
+                this.setState({ pageRedirectStaus: true });
+            })
+            .catch(error => {
+                cogoToast.error(error.message, {position: 'top-right'});
+            })
+
         }
 
+    }
+    
+
+    pageRedirect = () => {
+        if(this.state.pageRedirectStaus === true){
+            let URL = window.location;
+            return (
+                <Navigate to={URL} />
+            )
+        }
     }
     
 
@@ -156,7 +206,7 @@ class Cart extends Component {
                             <form action="">
                                 <div className="my-2">
                                     <label htmlFor="">Choose City</label>
-                                    <select name="city" id="" className='form-control' onChange={ (e) => this.setState({ city: e.target.value }) }>
+                                    <select name="city" id="" className='form-control' onChange={ this.cityOnSubmit }>
                                         <option value="">Choose</option>
                                         <option value="Assam">Assam</option>
                                         <option value="Bihar">Bihar</option>
@@ -168,7 +218,7 @@ class Cart extends Component {
                                 </div>
                                 <div className="my-2">
                                     <label htmlFor="">Choose Payment Method</label>
-                                    <select name="payment" id="" className='form-control' onChange={ (e) => this.setState({ payment: e.target.value }) } >
+                                    <select name="payment" id="" className='form-control' onChange={ this.paymentOnSubmit } >
                                         <option value="">Choose</option>
                                         <option value="Cash On Delivery">Cash On Delivery</option>
                                         <option value="Stripe">Stripe</option>
@@ -176,11 +226,11 @@ class Cart extends Component {
                                 </div>
                                 <div className="my-2">
                                     <label htmlFor="">Your Name</label>
-                                    <input type="text" name="name" className='form-control' onChange={ (e) => this.setState({ name: e.target.value }) } />
+                                    <input type="text" name="name" className='form-control' onChange={ this.nameOnSubmit } />
                                 </div>
                                 <div className="my-2">
                                     <label htmlFor="">Delivery Address</label>
-                                    <textarea name="delivey_address" id="" cols="30" rows="5" className='form-control' onChange={ (e) => this.setState({ delivery_address: e.target.value }) } ></textarea>
+                                    <textarea name="delivey_address" id="" cols="30" rows="5" className='form-control' onChange={ this.addressOnSubmit } ></textarea>
                                 </div>
                                 <br />
                                 <div className="form-rgoup">
@@ -193,6 +243,7 @@ class Cart extends Component {
             </Row>
         </Container>
         {this.pageRefresh()}
+        {this.pageRedirect()}
       </>
     )
   }

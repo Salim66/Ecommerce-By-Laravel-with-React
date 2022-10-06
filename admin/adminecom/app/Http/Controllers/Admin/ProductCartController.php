@@ -139,7 +139,7 @@ class ProductCartController extends Controller
 
         foreach ($cart_list as $key => $cart) {
             $cartInsertDeleteResult = "";
-            $result = CartOrder::create([
+            $result = CartOrder::insert([
                 "invoice_no" => $invoice_no,
                 "product_name" => $cart->product_name,
                 "product_code" => $cart->product_code,

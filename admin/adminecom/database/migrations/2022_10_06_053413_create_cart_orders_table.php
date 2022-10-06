@@ -29,7 +29,7 @@ return new class extends Migration
             $table->text('delivery_address');
             $table->string('city');
             $table->string('delivery_charge');
-            $table->string('order_data');
+            $table->string('order_date');
             $table->string('order_time');
             $table->string('order_status');
             $table->timestamps();
