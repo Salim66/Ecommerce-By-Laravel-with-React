@@ -32,6 +32,7 @@ class ReviewList extends Component {
     return (
         <>
             {
+                
                 reviewData.map((data, i) => {
                     if(data.reviewer_rating === "1"){
                      return <div>

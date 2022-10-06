@@ -76,7 +76,7 @@ Route::get('/search/{key}', [ProductListController::class, 'productListBySearch'
 Route::get('/similar/{subcategory}', [ProductListController::class, 'similarProduct']);
 
 // get review by user route
-Route::get('/reviewlist/{id}', [ReviewController::class, 'reviewList']);
+Route::get('/reviewlist/{product_code}', [ReviewController::class, 'reviewList']);
 
 // add to cart route
 Route::post('/addtocart', [ProductCartController::class, 'addToCart']);

@@ -14,8 +14,8 @@ class ReviewController extends Controller
      * @method GET
      */
     public function reviewList(Request $request){
-        $id = $request->id;
-        $reviewList = ProductReview::where('product_id', $id)->orderBy('id', 'DESC')->limit(4)->get();
+        $product_code = $request->product_code;
+        $reviewList = ProductReview::where('product_code', $product_code)->orderBy('id', 'DESC')->limit(4)->get();
         return $reviewList;
     }
 
