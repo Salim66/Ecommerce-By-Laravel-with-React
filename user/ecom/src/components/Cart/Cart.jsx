@@ -80,14 +80,14 @@ class Cart extends Component {
 
     return (
       <>
-        <Container>   
+        <Container fluid={true}>   
 
             <div className="section-title text-center mb-55"><h2>Product Cart List</h2></div>
             <Row>
 
                 {
                     cart_data.map((data, i) => (
-                <Col key={i} className="p-1" lg={12} md={12} sm={12} xs={12} >
+                <Col key={i} className="p-1" lg={7} md={7} sm={12} xs={12} >
                     <Card >                
                         <Card.Body>
                         <Row>
@@ -121,19 +121,44 @@ class Cart extends Component {
 
 
                 {/* Checkout and Total Quantity, Price */}
-                <Col className="p-1" lg={12} md={12} sm={12} xs={12} >
+                <Col className="p-1" lg={5} md={5} sm={12} xs={12} >
                     <Card >                
                         <Card.Body>
-                        <Row>
-                            <Col md={12} lg={12} sm={12} xs={12}>
-                                <h5>Total Quantity = 5</h5>
-                                <h5>Total Price = 5000$</h5>
-                            </Col>
-
-                            <Col md={3} lg={3} sm={12} xs={12}>
-                                <Button className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Checkout </Button>
-                            </Col>
-                        </Row>              
+                            <h4 className='text-danger'>Total Due: $</h4>
+                            <form action="">
+                                <div className="form-rgoup">
+                                    <label htmlFor="">Choose City</label>
+                                    <select name="city" id="" className='form-control'>
+                                        <option value="">Choose</option>
+                                        <option value="Assam">Assam</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="Goa">Goa</option>
+                                        <option value="Gujrat">Gujrat</option>
+                                        <option value="Himachol Prodesh">Himachol Prodesh</option>
+                                        <option value="Panjab">Panjab</option>
+                                    </select>
+                                </div>
+                                <div className="form-rgoup">
+                                    <label htmlFor="">Choose Payment Method</label>
+                                    <select name="payment" id="" className='form-control'>
+                                        <option value="">Choose</option>
+                                        <option value="Cash On Delivery">Cash On Delivery</option>
+                                        <option value="Stripe">Stripe</option>
+                                    </select>
+                                </div>
+                                <div className="form-rgoup">
+                                    <label htmlFor="">Your Name</label>
+                                    <input type="text" name="name" className='form-control' />
+                                </div>
+                                <div className="form-rgoup">
+                                    <label htmlFor="">Delivery Address</label>
+                                    <textarea name="delivey_address" id="" cols="30" rows="5" className='form-control' ></textarea>
+                                </div>
+                                <br />
+                                <div className="form-rgoup">
+                                    <button type='submit' className='btn site-btn'>Confirm Order</button>
+                                </div>
+                            </form>
                         </Card.Body>               
                     </Card>
                 </Col> 
