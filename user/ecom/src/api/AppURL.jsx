@@ -67,6 +67,10 @@ class AppURL {
         return this.baseURL+"/cartlist/"+email;
     }
 
+    static removeCartList(id){
+        return this.baseURL+"/removecartlist/"+id;
+    }
+
 }
 
 // export default AppURL

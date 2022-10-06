@@ -1,6 +1,8 @@
 import axios from 'axios';
+import cogoToast from 'cogo-toast';
 import React, { Component } from 'react';
 import {Navbar,Container, Row, Col,Button,Card} from 'react-bootstrap';
+import { Navigate } from 'react-router-dom';
 import AppURL from '../../api/AppURL';
 import Product1 from '../../assets/images/product/product1.png'
 
@@ -11,7 +13,8 @@ class Cart extends Component {
         this.state = {
           cart_data : [],
           loaderDiv: '',
-          mainDiv: 'd-none'
+          mainDiv: 'd-none',
+          cartCountPageRefresh: false,
         }
     }
     
@@ -26,6 +29,27 @@ class Cart extends Component {
         })
     
     }
+
+    removeCartList = (id) => {
+        axios.get(AppURL.removeCartList(id))
+        .then(res => {
+            cogoToast.success('Cart item deleted successfully', {position: 'top-right'});
+            this.setState({ cartCountPageRefresh: true });
+        })
+        .catch(error => {
+            cogoToast.error(error.message, {position: 'top-right'});
+        })
+    }
+
+    pageRefresh = () => {
+        if(this.state.cartCountPageRefresh === true){
+            let URL = window.location;
+            return (
+                <Navigate to={URL} />
+            )
+        }
+    }
+
     
 
   render() {
@@ -41,7 +65,7 @@ class Cart extends Component {
 
                 {
                     cart_data.map((data, i) => (
-                <Col className="p-1" lg={12} md={12} sm={12} xs={12} >
+                <Col key={i} className="p-1" lg={12} md={12} sm={12} xs={12} >
                     <Card >                
                         <Card.Body>
                         <Row>
@@ -58,7 +82,7 @@ class Cart extends Component {
 
                                 <Col md={3} lg={3} sm={12} xs={12}>
                                 <input placeholder="2" className="form-control text-center" type="number" />
-                                <Button className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
+                                <Button onClick={ () => this.removeCartList(data.id) } className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
 
                                 </Col>
                         </Row>              
@@ -91,6 +115,7 @@ class Cart extends Component {
                 </Col> 
             </Row>
         </Container>
+        {this.pageRefresh()}
       </>
     )
   }
