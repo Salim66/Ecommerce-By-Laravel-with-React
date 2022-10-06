@@ -79,6 +79,8 @@ class AppURL {
         return this.baseURL+"/cartitemdecrement/"+id+"/"+quantity+"/"+price;
     }
 
+    static cartOrder = this.baseURL+"/cartorder";
+
 }
 
 // export default AppURL

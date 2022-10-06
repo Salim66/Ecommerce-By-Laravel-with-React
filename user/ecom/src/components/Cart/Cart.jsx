@@ -15,6 +15,11 @@ class Cart extends Component {
           loaderDiv: '',
           mainDiv: 'd-none',
           cartCountPageRefresh: false,
+          confirmBtn: "Confirm Order",
+          city: '',
+          payment: '',
+          name: '',
+          delivery_address: ''
         }
     }
     
@@ -72,6 +77,26 @@ class Cart extends Component {
         }
     }
 
+
+    orderSubmit = () => {
+        let city = this.state.city;
+        let payment_method = this.state.payment;
+        let name = this.state.name;
+        let delivery_address = this.state.delivery_address;
+
+        if(!city){
+            cogoToast.warn('Please select any city', {position: 'top-right'});
+        }else if(!payment_method){
+            cogoToast.warn('Please select any payment method', {position: 'top-right'});
+        }else if(!name){
+            cogoToast.warn('Please enter your name', {position: 'top-right'});
+        }else if(!delivery_address){
+            cogoToast.warn('Please select any city', {position: 'top-right'});
+        }else {
+            
+        }
+
+    }
     
 
   render() {
@@ -131,7 +156,7 @@ class Cart extends Component {
                             <form action="">
                                 <div className="my-2">
                                     <label htmlFor="">Choose City</label>
-                                    <select name="city" id="" className='form-control'>
+                                    <select name="city" id="" className='form-control' onChange={ (e) => this.setState({ city: e.target.value }) }>
                                         <option value="">Choose</option>
                                         <option value="Assam">Assam</option>
                                         <option value="Bihar">Bihar</option>
@@ -143,7 +168,7 @@ class Cart extends Component {
                                 </div>
                                 <div className="my-2">
                                     <label htmlFor="">Choose Payment Method</label>
-                                    <select name="payment" id="" className='form-control'>
+                                    <select name="payment" id="" className='form-control' onChange={ (e) => this.setState({ payment: e.target.value }) } >
                                         <option value="">Choose</option>
                                         <option value="Cash On Delivery">Cash On Delivery</option>
                                         <option value="Stripe">Stripe</option>
@@ -151,15 +176,15 @@ class Cart extends Component {
                                 </div>
                                 <div className="my-2">
                                     <label htmlFor="">Your Name</label>
-                                    <input type="text" name="name" className='form-control' />
+                                    <input type="text" name="name" className='form-control' onChange={ (e) => this.setState({ name: e.target.value }) } />
                                 </div>
                                 <div className="my-2">
                                     <label htmlFor="">Delivery Address</label>
-                                    <textarea name="delivey_address" id="" cols="30" rows="5" className='form-control' ></textarea>
+                                    <textarea name="delivey_address" id="" cols="30" rows="5" className='form-control' onChange={ (e) => this.setState({ delivery_address: e.target.value }) } ></textarea>
                                 </div>
                                 <br />
                                 <div className="form-rgoup">
-                                    <button type='submit' className='btn site-btn'>Confirm Order</button>
+                                    <button onClick={ this.orderSubmit } type='button' className='btn site-btn'>{ this.state.confirmBtn }</button>
                                 </div>
                             </form>
                         </Card.Body>               
