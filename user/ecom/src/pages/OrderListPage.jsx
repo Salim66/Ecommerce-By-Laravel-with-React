@@ -21,7 +21,7 @@ export class OrderListPage extends Component {
             <NavMenuMobile />
             </div>
             
-            <OrderList />
+            <OrderList user={ this.props.user } />
 
             <div className='desktop'>
             <FooterDesktop />

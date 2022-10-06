@@ -81,6 +81,10 @@ class AppURL {
 
     static cartOrder = this.baseURL+"/cartorder";
 
+    static orderListByUser(email){
+        return this.baseURL+"/orderlistbyuser/"+email;
+    }
+
 }
 
 // export default AppURL
