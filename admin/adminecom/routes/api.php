@@ -98,3 +98,9 @@ Route::get('/cartlist/{email}', [ProductCartController::class, 'cartList']);
 
 // remove cart list product route
 Route::get('/removecartlist/{id}', [ProductCartController::class, 'removeCartList']);
+
+// quantity increment in cart route
+Route::get('/cartitemincrement/{id}/{quantity}/{price}', [ProductCartController::class, 'cartItemIncrement']);
+
+// quantity decrement in cart route
+Route::get('/cartitemdecrement/{id}/{quantity}/{price}', [ProductCartController::class, 'cartItemDecrement']);
