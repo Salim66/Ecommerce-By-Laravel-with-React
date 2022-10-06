@@ -15,7 +15,12 @@ export class OrderList extends Component {
           mainDiv: 'd-none',
           notificationMsg: '',
           notificationTitle: '',
-          notificationDate: ''
+          notificationDate: '',
+          name: '',
+          rating: '',
+          comment: '',
+          product_name: '',
+          product_code: ''
         }
     }
     
@@ -42,6 +47,12 @@ export class OrderList extends Component {
         let message = e.target.getAttribute('data-message');
         let date = e.target.getAttribute('data-date');
         this.setState({ notificationTitle: title, notificationMsg: message, notificationDate: date });
+    }
+
+    postReview = () => {
+
+        
+
     }
 
   render() {
@@ -79,10 +90,32 @@ export class OrderList extends Component {
                 <h6><i className="fa fa-bell"></i> Post your review this product.</h6>
                 </Modal.Header>
                 <Modal.Body>
-                    <h6>Review</h6>
-                    <p>Review</p>
+                    <form action="">
+                        <div className="my-2">
+                            <label htmlFor="">Your Name</label>
+                            <input type="text" name='name' className='form-control' onChange={ (e) => this.setState({ name: e.target.value }) } />
+                        </div>
+                        <div className="my-2">
+                            <label htmlFor="">Choose Product Rating</label>
+                            <select name="rating" id="" className='form-control' onChange={ (e) => this.setState({ rating: e.target.value }) }>
+                                <option value="">Choose</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div className="my-2">
+                            <label htmlFor="">Your Comment</label>
+                            <textarea name="comment" className='form-control' rows="2" placeholder='Comment' onChange={ (e) => this.setState({ comment: e.target.value }) }></textarea>
+                        </div>
+                    </form>
                 </Modal.Body>
                 <Modal.Footer>
+                <Button variant="primary" onClick={this.postReview}>
+                    Post
+                </Button>
                 <Button variant="secondary" onClick={this.handleClose}>
                     Close
                 </Button>
