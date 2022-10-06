@@ -85,6 +85,8 @@ class AppURL {
         return this.baseURL+"/orderlistbyuser/"+email;
     }
 
+    static postReview = this.baseURL+"/postreview";
+
 }
 
 // export default AppURL

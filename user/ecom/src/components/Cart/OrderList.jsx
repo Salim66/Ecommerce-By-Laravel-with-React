@@ -1,7 +1,8 @@
-import axios from 'axios';
 import React, { Component } from 'react';
 import AppURL from '../../api/AppURL';
 import {Navbar,Container, Row, Col,Button,Card, Modal} from 'react-bootstrap';
+import cogoToast from 'cogo-toast';
+import axios from 'axios';
 
 export class OrderList extends Component {
 
@@ -40,18 +41,46 @@ export class OrderList extends Component {
         this.setState({ show: false });
     }
 
-    handleShow = (e) => {
+    handleShow = (product_name, product_code) => {
         this.setState({ show: true });
-        // get dynamic value by passing attribute
-        let title = e.target.getAttribute('data-title');
-        let message = e.target.getAttribute('data-message');
-        let date = e.target.getAttribute('data-date');
-        this.setState({ notificationTitle: title, notificationMsg: message, notificationDate: date });
+        this.setState({ product_name: product_name });
+        this.setState({ product_code: product_code });
     }
 
     postReview = () => {
 
-        
+        let name = this.state.name;
+        let rating = this.state.rating;
+        let comment = this.state.comment;
+        let product_name = this.state.product_name;
+        let product_code = this.state.product_code;
+
+        if(!name){
+            cogoToast.warn('Please Enter your name', {position: 'top-right'});
+        }else if(!rating){
+            cogoToast.warn('Please select any rating method', {position: 'top-right'});
+        }else if(!comment){
+            cogoToast.warn('Please enter your comment', {position: 'top-right'});
+        }else {
+
+            let myFormData = new FormData();
+            myFormData.append('product_code', product_code);
+            myFormData.append('product_name', product_name);
+            myFormData.append('reviewer_name', name);
+            myFormData.append('reviewer_rating', rating);
+            myFormData.append('reviewer_photo', "");
+            myFormData.append('reviewer_comments', comment);
+
+            axios.post(AppURL.postReview, myFormData)
+            .then(res => {
+                cogoToast.success('Review Submitted', {position: 'top-right'});
+                this.handleClose();
+            })
+            .catch(error => {
+                cogoToast.error(error.message, {position: 'top-right'});
+            })
+
+        }
 
     }
 
@@ -75,7 +104,7 @@ export class OrderList extends Component {
                                             <h6>Quantity: { data.quantity }</h6>
                                             <p>{ data.color } | { data.size }</p>
                                             <h6>Price = { data.quantity } x { data.unit_price }$ = { data.total_price }$</h6> 
-                                            <button onClick={this.handleShow} className='btn btn-danger'>Post Review</button>         
+                                            <button onClick={this.handleShow.bind(this, data.product_name, data.product_code)} className='btn btn-danger'>Post Review</button>         
                                     </Card.Body>               
                                 </Card>
                             </Col> 
