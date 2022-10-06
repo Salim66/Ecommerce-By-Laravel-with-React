@@ -18,4 +18,29 @@ class ReviewController extends Controller
         $reviewList = ProductReview::where('product_id', $id)->orderBy('id', 'DESC')->limit(4)->get();
         return $reviewList;
     }
+
+    /**
+     * @access private
+     * @routes /api/postreview
+     * @method POST
+     */
+    public function postReview(Request $request){
+        $product_name = $request->input('product_name');
+        $product_code = $request->input('product_code');
+        $reviewer_name = $request->input('reviewer_name');
+        $reviewer_rating = $request->input('reviewer_rating');
+        $reviewer_photo = $request->input('reviewer_photo');
+        $reviewer_comments = $request->input('reviewer_comments');
+
+        $result = ProductReview::create([
+            'product_code' => $product_code,
+            'product_name' => $product_name,
+            'reviewer_name' => $reviewer_name,
+            'reviewer_rating' => $reviewer_rating,
+            'reviewer_photo' => $reviewer_photo,
+            'reviewer_comments' => $reviewer_comments,
+        ]);
+
+        return $result;
+    }
 }

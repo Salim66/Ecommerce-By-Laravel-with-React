@@ -110,3 +110,6 @@ Route::post('/cartorder', [ProductCartController::class, 'cartOrder']);
 
 // cart order list by user route
 Route::get('/orderlistbyuser/{email}', [ProductCartController::class, 'orderListByUser']);
+
+// post product reviewer by user route
+Route::post('/postreview', [ReviewController::class, 'postReview']);
