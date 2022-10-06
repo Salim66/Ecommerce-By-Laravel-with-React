@@ -1,14 +1,21 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import AppURL from '../../api/AppURL';
-import {Navbar,Container, Row, Col,Button,Card} from 'react-bootstrap';
+import {Navbar,Container, Row, Col,Button,Card, Modal} from 'react-bootstrap';
 
 export class OrderList extends Component {
 
     constructor(){
         super();
         this.state = {
-          order_data : []
+          order_data : [],
+          show: false,
+          notification_data : [],
+          loaderDiv: '',
+          mainDiv: 'd-none',
+          notificationMsg: '',
+          notificationTitle: '',
+          notificationDate: ''
         }
     }
     
@@ -22,6 +29,19 @@ export class OrderList extends Component {
           console.log(error);
         })
     
+    }
+
+    handleClose = () => {
+        this.setState({ show: false });
+    }
+
+    handleShow = (e) => {
+        this.setState({ show: true });
+        // get dynamic value by passing attribute
+        let title = e.target.getAttribute('data-title');
+        let message = e.target.getAttribute('data-message');
+        let date = e.target.getAttribute('data-date');
+        this.setState({ notificationTitle: title, notificationMsg: message, notificationDate: date });
     }
 
   render() {
@@ -44,7 +64,7 @@ export class OrderList extends Component {
                                             <h6>Quantity: { data.quantity }</h6>
                                             <p>{ data.color } | { data.size }</p>
                                             <h6>Price = { data.quantity } x { data.unit_price }$ = { data.total_price }$</h6> 
-                                            <button className='btn btn-danger'>Post Review</button>         
+                                            <button onClick={this.handleShow} className='btn btn-danger'>Post Review</button>         
                                     </Card.Body>               
                                 </Card>
                             </Col> 
@@ -53,6 +73,22 @@ export class OrderList extends Component {
                 
             </Row>
             </Container>
+
+            <Modal show={this.state.show} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                <h6><i className="fa fa-bell"></i> Post your review this product.</h6>
+                </Modal.Header>
+                <Modal.Body>
+                    <h6>Review</h6>
+                    <p>Review</p>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={this.handleClose}>
+                    Close
+                </Button>
+
+                </Modal.Footer>
+            </Modal>
       </>
     )
   }
