@@ -24,7 +24,9 @@ class ProductDetails extends Component {
             productCode: null,
             addToCart: "Add To Cart",
             cartCountPageRefresh: false,
-            addToFavourite: "Favourite"
+            addToFavourite: "Favourite",
+            orderNow: "Order Now",
+            PageRedirectStatus: false,
         }
     }
 
@@ -87,6 +89,56 @@ class ProductDetails extends Component {
             })
         }
 
+    }
+
+    orderNow = () => {
+
+        let isColor = this.state.isColor;
+        let isSize = this.state.isSize;
+        let color = this.state.color;
+        let size = this.state.size;
+        let quantity = this.state.quantity;
+        let productCode = this.state.productCode;
+        let email = this.props.user.email;
+
+        if(isColor === "YES" && color.length === 0){
+            cogoToast.error('Please select any color', {position: 'top-right'});
+        }else if (isSize === "YES" && size.length === 0){
+            cogoToast.error('Please select any size', {position: 'top-right'});
+        }else if(quantity.length === 0){
+            cogoToast.error('Please select quantity', {position: 'top-right'});
+        }else if(!localStorage.getItem('token')){
+            cogoToast.warn('Please you have to logged in first', {position: 'top-right'});
+        }else {
+            this.setState({ addToCart: "Adding....." });
+            let myFormData = new FormData();
+            myFormData.append("color", color);
+            myFormData.append("size", size);
+            myFormData.append("quantity", quantity);
+            myFormData.append("product_code", productCode);
+            myFormData.append("email", email);
+
+            axios.post(AppURL.addToCart, myFormData)
+            .then(res => {
+                cogoToast.success('Product added successfully', {position: 'top-right'});
+                this.setState({ orderNow: "Order Now" });
+                this.setState({ PageRedirectStatus: true });
+                this.pageRedirect();
+            })
+            .catch(error => {
+                cogoToast.error('Your request is not done! Try Again', {position: 'top-right'});
+                this.setState({ orderNow: "Order Now" });
+            })
+        }
+
+    }
+
+    pageRedirect = () => {
+        if(this.state.PageRedirectStatus === true){
+            return (
+                <Navigate to="/cart" />
+            )
+        }
     }
 
     addToFavourite = () => {
@@ -277,7 +329,7 @@ class ProductDetails extends Component {
 
                         <div className="input-group mt-3">
                             <button onClick={ this.addToCart } className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  { this.state.addToCart }</button>
-                            <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
+                            <button onClick={ this.orderNow } className="btn btn-primary m-1"> <i className="fa fa-car"></i> { this.state.orderNow }</button>
                             <button onClick={ this.addToFavourite } className="btn btn-primary m-1"> <i className="fa fa-heart"></i> { this.state.addToFavourite }</button>
                         </div>
                         </Col>
@@ -299,6 +351,7 @@ class ProductDetails extends Component {
             </Row>
         </Container>
         <SuggestedProduct subcategory={ productList.subcategory } />
+        {this.pageRedirect()}
         {this.pageRefresh()}
       </>
     )
