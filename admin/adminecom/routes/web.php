@@ -25,3 +25,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 });
 
 Route::get('/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
+
+Route::prefix('admin')->group(function(){
+    Route::get('/user/profile', [AdminController::class, 'userProfile'])->name('user.profile');
+});
