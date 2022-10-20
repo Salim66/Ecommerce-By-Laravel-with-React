@@ -3,6 +3,7 @@ import AppURL from '../../api/AppURL';
 import {Navbar,Container, Row, Col,Button,Card, Modal} from 'react-bootstrap';
 import cogoToast from 'cogo-toast';
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
 export class OrderList extends Component {
 
@@ -85,6 +86,10 @@ export class OrderList extends Component {
     }
 
   render() {
+
+    if(!localStorage.getItem('token')){
+        return <Navigate to='/login' />
+    }
     
     let order_data = this.state.order_data;
     console.log(order_data);

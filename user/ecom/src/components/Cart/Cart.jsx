@@ -151,6 +151,10 @@ class Cart extends Component {
 
   render() {
 
+    if(!localStorage.getItem('token')){
+        return <Navigate to='/login' />
+    }
+
     let cart_data = this.state.cart_data;
 
     let totalDueAmount = 0;

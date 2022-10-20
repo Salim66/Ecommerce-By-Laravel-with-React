@@ -3,6 +3,7 @@ import { Container,Row,Col, Card,Button,Modal } from 'react-bootstrap';
 import AppURL from '../../api/AppURL';
 import axios from 'axios';
 import NotificationLoading from '../Placeholder/NotificationLoading';
+import { Navigate } from 'react-router-dom';
 
 class Notification extends Component {
 
@@ -45,6 +46,10 @@ class Notification extends Component {
     }
 
   render() {
+
+    if(!localStorage.getItem('token')){
+        return <Navigate to='/login' />
+    }
 
     let notification_data = this.state.notification_data;
 
