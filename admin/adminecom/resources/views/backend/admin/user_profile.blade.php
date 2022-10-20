@@ -1,6 +1,7 @@
 @extends('admin.admin_master')
 
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <div class="page-wrapper">
     <div class="page-content">
         <!--breadcrumb-->
@@ -93,7 +94,14 @@
                                         <h6 class="mb-0">Profile Photo</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="file" class="form-control" name="profile_photo_path" />
+                                        <input type="file" class="form-control" name="profile_photo_path" id="image" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <img id="previewImg" src="{{ !empty($data->profile_photo_path) ? url('upload/admin_images/'.$data->profile_photo_path) : url('upload/no_image.jpg')  }}" width="110" height="110">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -110,4 +118,15 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#image").change(function(e){
+            let reader = new FileReader();
+            reader.onload = function(e){
+                $('#previewImg').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        });
+    });
+</script>
 @endsection
