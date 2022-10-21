@@ -53,6 +53,11 @@ class AdminController extends Controller
         $user->profile_photo_path = $fileName;
         $user->update();
 
-        return redirect()->route('user.profile');
+        $notification = [
+            "message" => "User profile updated successfully",
+            "alert-type" => "success"
+        ];
+
+        return redirect()->route('user.profile')->with($notification);
     }
 }
