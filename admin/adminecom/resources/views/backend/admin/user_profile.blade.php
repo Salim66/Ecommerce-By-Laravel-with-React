@@ -37,7 +37,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
-                                    <img src="{{ !empty($data->profile_photo_path) ? url('upload/admin_images/'.$data->profile_photo_path) : url('upload/no_image.jpg')  }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                                    <img src="{{ !empty($data->profile_photo_path) ? URL::to('upload/admin_images/'.$data->profile_photo_path) : URL::to('upload/no_image.jpg')  }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                                     <div class="mt-3">
                                         <h4>{{ $data->name }}</h4>
                                         <p class="text-secondary mb-1">{{ $data->email }}</p>
@@ -71,47 +71,50 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Full Name</h6>
+                        <form action="{{ route('user.profile.update') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Full Name</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" name="name" class="form-control" value="{{ $data->name }}" />
+                                        </div>
                                     </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control" value="John Doe" />
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Email</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="email" name="email" class="form-control" value="{{ $data->email }}" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Email</h6>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Profile Photo</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="file" class="form-control" name="profile_photo_path" id="image" />
+                                        </div>
                                     </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control" value="john@example.com" />
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <img id="previewImg" src="{{ !empty($data->profile_photo_path) ? URL::to('upload/admin_images/'.$data->profile_photo_path) : URL::to('upload/no_image.jpg')  }}" width="110" height="110">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Profile Photo</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="file" class="form-control" name="profile_photo_path" id="image" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <img id="previewImg" src="{{ !empty($data->profile_photo_path) ? url('upload/admin_images/'.$data->profile_photo_path) : url('upload/no_image.jpg')  }}" width="110" height="110">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="button" class="btn btn-primary px-4" value="Save Changes" />
+                                    <div class="row">
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
