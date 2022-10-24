@@ -24,6 +24,11 @@
                     <div class="col-lg-12">
                         <form action="{{ route('change.password.update') }}" method="POST">
                             @csrf
+
+                            @foreach ($errors->all() as $error)
+                                <p class="text-danger">{{ $error }}</p>
+                            @endforeach
+
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row mb-3">
