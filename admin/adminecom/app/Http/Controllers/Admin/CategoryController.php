@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
+use Image;
 
 class CategoryController extends Controller
 {
@@ -59,6 +60,30 @@ class CategoryController extends Controller
      * @method POST
      */
     public function storeCategory(Request $request){
+        $this->validate($request, [
+            'category_name' => 'required'
+        ],[
+            'category_name.required' => 'Please insert category name'
+        ]);
 
+        $save_url = '';
+        if($request->hasFile('category_image')){
+            $image = $request->file('category_image');
+            $img_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(128, 128)->save('upload/category/'.$img_gen);
+            $save_url = 'http://localhost:8000/upload/category/'.$img_gen;
+        }
+
+        Category::create([
+            'category_name' => $request->category_name,
+            'category_image' => $save_url
+        ]);
+
+        $notification = [
+            'message' => "Category added successfully",
+            'alert-type' => "success"
+        ];
+
+        return redirect()->route('get.all.category')->with($notification);
     }
 }
