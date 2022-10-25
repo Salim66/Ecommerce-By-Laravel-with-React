@@ -86,4 +86,24 @@ class CategoryController extends Controller
 
         return redirect()->route('get.all.category')->with($notification);
     }
+
+    /**
+     * @access private
+     * @routes /categories/edit/category/{id}
+     * @method GET
+     */
+    public function editCategory($id){
+        $data = Category::findOrFail($id);
+        return view('backend.category.edit_category', compact('data'));
+    }
+
+    /**
+     * @access private
+     * @routes /categories/update/category/{id}
+     * @method PUT
+     */
+    public function updateCategory($id){
+        $data = Category::findOrFail($id);
+
+    }
 }

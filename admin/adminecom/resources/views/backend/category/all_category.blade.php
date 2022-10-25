@@ -51,7 +51,7 @@
                                                 </td>
                                                 <td>{{ $data->category_name }}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-info">Edit</a>
+                                                    <a href="{{ route('edit.category', $data->id) }}" class="btn btn-info">Edit</a>
                                                     <a href="#" class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
