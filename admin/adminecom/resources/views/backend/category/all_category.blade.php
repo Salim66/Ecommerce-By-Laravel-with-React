@@ -47,7 +47,7 @@
                                             <tr>
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td>
-                                                    <img src="{{ $data->category_image }}" alt="" style="width: 50px; height: 50px;">
+                                                    <img src="{{ $data->category_image }}" alt="" style="width: 40px; height: 40px;">
                                                 </td>
                                                 <td>{{ $data->category_name }}</td>
                                                 <td>
