@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,4 +51,13 @@ Route::prefix('subcategories')->group(function(){
     Route::get('/eidt/subcategory/{id}', [CategoryController::class, 'editSubCategory'])->name('edit.subcategory');
     Route::put('/update/subcategory/{id}', [CategoryController::class, 'updateSubCategory'])->name('update.subcategory');
     Route::get('/delete/subcategory/{id}', [CategoryController::class, 'deleteSubCategory'])->name('delete.subcategory');
+});
+
+Route::prefix('sliders')->group(function(){
+    Route::get('/all/slider', [SliderController::class, 'getAllSlider'])->name('get.all.slider');
+    Route::get('/add/slider', [SliderController::class, 'addSlider'])->name('add.slider');
+    Route::post('/store/slider', [SliderController::class, 'storeSlider'])->name('store.slider');
+    Route::get('/eidt/slider/{id}', [SliderController::class, 'editSlider'])->name('edit.slider');
+    Route::put('/update/slider/{id}', [SliderController::class, 'updateSlider'])->name('update.slider');
+    Route::get('/delete/slider/{id}', [SliderController::class, 'deleteSlider'])->name('delete.slider');
 });
