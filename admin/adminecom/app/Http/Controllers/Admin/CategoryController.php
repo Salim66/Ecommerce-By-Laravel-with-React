@@ -33,4 +33,14 @@ class CategoryController extends Controller
 
         return $categoryDetailsArray;
     }
+
+    /**
+     * @access private
+     * @routes /categories/all/category
+     * @method GET
+     */
+    public function getAllCategory(){
+        $all_data = Category::latest()->get();
+        return view('backend.category.all_category', compact('all_data'));
+    }
 }
