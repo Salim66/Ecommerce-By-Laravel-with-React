@@ -43,4 +43,22 @@ class CategoryController extends Controller
         $all_data = Category::latest()->get();
         return view('backend.category.all_category', compact('all_data'));
     }
+
+    /**
+     * @access private
+     * @routes /categories/add/category
+     * @method GET
+     */
+    public function addCategory(){
+        return view('backend.category.add_category');
+    }
+
+    /**
+     * @access private
+     * @routes /categories/store/category
+     * @method POST
+     */
+    public function storeCategory(Request $request){
+
+    }
 }

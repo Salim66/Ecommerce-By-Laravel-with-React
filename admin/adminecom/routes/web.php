@@ -36,5 +36,6 @@ Route::prefix('admin')->group(function(){
 
 Route::prefix('categories')->group(function(){
     Route::get('/all/category', [CategoryController::class, 'getAllCategory'])->name('get.all.category');
-    Route::post('/user/profile/update', [AdminController::class, 'userProfileUpdate'])->name('user.profile.update');
+    Route::get('/add/category', [CategoryController::class, 'addCategory'])->name('add.category');
+    Route::post('/store/category', [CategoryController::class, 'storeCategory'])->name('store.category');
 });
