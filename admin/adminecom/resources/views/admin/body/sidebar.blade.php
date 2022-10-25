@@ -47,6 +47,19 @@
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-donate-blood'></i>
+                </div>
+                <div class="menu-title">Product</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('get.all.product') }}"><i class="bx bx-right-arrow-alt"></i>All Product</a>
+                </li>
+                <li> <a href="{{ route('add.product') }}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-repeat'></i>
                 </div>
                 <div class="menu-title">Slider</div>
@@ -55,21 +68,6 @@
                 <li> <a href="{{ route('get.all.slider') }}"><i class="bx bx-right-arrow-alt"></i>All Slider</a>
                 </li>
                 <li> <a href="{{ route('add.slider') }}"><i class="bx bx-right-arrow-alt"></i>Add Slider</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bx bx-repeat"></i>
-                </div>
-                <div class="menu-title">Content</div>
-            </a>
-            <ul>
-                <li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>Grid System</a>
-                </li>
-                <li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>Typography</a>
-                </li>
-                <li> <a href="content-text-utilities.html"><i class="bx bx-right-arrow-alt"></i>Text Utilities</a>
                 </li>
             </ul>
         </li>

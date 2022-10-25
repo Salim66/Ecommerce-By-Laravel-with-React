@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -60,4 +61,13 @@ Route::prefix('sliders')->group(function(){
     Route::get('/eidt/slider/{id}', [SliderController::class, 'editSlider'])->name('edit.slider');
     Route::put('/update/slider/{id}', [SliderController::class, 'updateSlider'])->name('update.slider');
     Route::get('/delete/slider/{id}', [SliderController::class, 'deleteSlider'])->name('delete.slider');
+});
+
+Route::prefix('products')->group(function(){
+    Route::get('/all/product', [ProductListController::class, 'getAllProduct'])->name('get.all.product');
+    Route::get('/add/product', [ProductListController::class, 'addProduct'])->name('add.product');
+    Route::post('/store/product', [ProductListController::class, 'storeProduct'])->name('store.product');
+    Route::get('/eidt/product/{id}', [ProductListController::class, 'editProduct'])->name('edit.product');
+    Route::put('/update/product/{id}', [ProductListController::class, 'updateProduct'])->name('update.product');
+    Route::get('/delete/product/{id}', [ProductListController::class, 'deleteProduct'])->name('delete.product');
 });
