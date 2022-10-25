@@ -146,4 +146,106 @@ class CategoryController extends Controller
         return redirect()->back()->with($notification);
 
     }
+
+    ////////////////// Sub Category ////////////////////
+    /**
+     * @access private
+     * @routes /subcategories/all/category
+     * @method GET
+     */
+    public function getAllSubCategory(){
+
+        $all_data = Subcategory::latest()->get();
+        return view('backend.subcategory.all_subcategory', compact('all_data'));
+
+    }
+
+    /**
+     * @access private
+     * @routes /categories/add/subcategory
+     * @method GET
+     */
+    public function addSubCategory(){
+        $categories = Category::latest()->get();
+        return view('backend.subcategory.add_subcategory', compact('categories'));
+    }
+
+    /**
+     * @access private
+     * @routes /categories/store/subcategory
+     * @method POST
+     */
+    public function storeSubCategory(Request $request){
+        $this->validate($request, [
+            'category_name' => 'required',
+            'subcategory_name' => 'required'
+        ],[
+            'category_name.required' => 'Please insert category name',
+            'subcategory_name.required' => 'Please insert sub-category name'
+        ]);
+
+        Subcategory::create([
+            'category_name' => $request->category_name,
+            'subcategory_name' => $request->subcategory_name
+        ]);
+
+        $notification = [
+            'message' => "Sub-Category added successfully",
+            'alert-type' => "success"
+        ];
+
+        return redirect()->route('get.all.subcategory')->with($notification);
+    }
+
+     /**
+     * @access private
+     * @routes /categories/edit/subcategory/{id}
+     * @method GET
+     */
+    public function editSubCategory($id){
+        $data = Subcategory::findOrFail($id);
+        $categories = Category::latest()->get();
+        return view('backend.subcategory.edit_subcategory', compact('data', 'categories'));
+    }
+
+    /**
+     * @access private
+     * @routes /categories/update/subcategory/{id}
+     * @method PUT
+     */
+    public function updateSubCategory(Request $request, $id){
+
+        $data = Subcategory::findOrFail($id);
+
+        $data->category_name = $request->category_name;
+        $data->subcategory_name = $request->subcategory_name;
+        $data->update();
+
+        $notification = [
+            'message' => "Sub-Category updated successfully",
+            'alert-type' => "info"
+        ];
+
+        return redirect()->route('get.all.subcategory')->with($notification);
+
+    }
+
+    /**
+     * @access private
+     * @routes /categories/delete/subcategory/{id}
+     * @method GET
+     */
+    public function deleteSubCategory($id){
+
+        Subcategory::findOrFail($id)->delete();
+
+        $notification = [
+            'message' => "SubCategory delete successfully",
+            'alert-type' => "success"
+        ];
+
+        return redirect()->back()->with($notification);
+
+    }
+
 }

@@ -22,9 +22,8 @@
             <div class="main-body">
                 <div class="row">
                     <div class="col-lg-8">
-                        <form action="{{ route('update.category', $data->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('store.category') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row mb-3">
@@ -47,7 +46,7 @@
                                         <div class="col-sm-3">
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <img id="previewImg" src="{{ ($data->category_image) ? URL::to($data->category_image) : URL::to('upload/no_image.jpg')  }}" width="110" height="110">
+                                            <img id="previewImg" src="{{ $data->category_image ? URL::to($data->category_image) : URL::to('upload/no_image.jpg')  }}" width="110" height="110">
                                         </div>
                                     </div>
                                     <div class="row">

@@ -42,3 +42,12 @@ Route::prefix('categories')->group(function(){
     Route::put('/update/category/{id}', [CategoryController::class, 'updateCategory'])->name('update.category');
     Route::get('/delete/category/{id}', [CategoryController::class, 'deleteCategory'])->name('delete.category');
 });
+
+Route::prefix('subcategories')->group(function(){
+    Route::get('/all/subcategory', [CategoryController::class, 'getAllSubCategory'])->name('get.all.subcategory');
+    Route::get('/add/subcategory', [CategoryController::class, 'addSubCategory'])->name('add.subcategory');
+    Route::post('/store/subcategory', [CategoryController::class, 'storeSubCategory'])->name('store.subcategory');
+    Route::get('/eidt/subcategory/{id}', [CategoryController::class, 'editSubCategory'])->name('edit.subcategory');
+    Route::put('/update/subcategory/{id}', [CategoryController::class, 'updateSubCategory'])->name('update.subcategory');
+    Route::get('/delete/subcategory/{id}', [CategoryController::class, 'deleteSubCategory'])->name('delete.subcategory');
+});

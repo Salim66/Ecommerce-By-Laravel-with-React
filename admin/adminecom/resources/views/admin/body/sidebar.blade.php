@@ -33,6 +33,19 @@
             </ul>
         </li>
         <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+                </div>
+                <div class="menu-title">Sub-Category</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('get.all.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>All Sub-Category</a>
+                </li>
+                <li> <a href="{{ route('add.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Add Sub-Category</a>
+                </li>
+            </ul>
+        </li>
+        <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
                 </div>
