@@ -102,8 +102,30 @@ class CategoryController extends Controller
      * @routes /categories/update/category/{id}
      * @method PUT
      */
-    public function updateCategory($id){
+    public function updateCategory(Request $request, $id){
+
         $data = Category::findOrFail($id);
+
+        $save_url = '';
+        if($request->hasFile('category_image')){
+            $image = $request->file('category_image');
+            $img_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(128, 128)->save('upload/category/'.$img_gen);
+            $save_url = 'http://localhost:8000/upload/category/'.$img_gen;
+        }else {
+            $save_url = $data->category_image;
+        }
+
+        $data->category_name = $request->category_name;
+        $data->category_image = $save_url;
+        $data->update();
+
+        $notification = [
+            'message' => "Category updated successfully",
+            'alert-type' => "info"
+        ];
+
+        return redirect()->route('get.all.category')->with($notification);
 
     }
 }
