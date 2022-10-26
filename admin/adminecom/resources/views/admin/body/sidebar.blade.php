@@ -73,9 +73,16 @@
         </li>
         <li>
             <a href="{{ route('all.contact') }}">
-                <div class="parent-icon"><i class='bx bx-grid-alt'></i>
+                <div class="parent-icon"><i class='bx bx-message-square-edit'></i>
                 </div>
                 <div class="menu-title">All Contact Message</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('all.review') }}">
+                <div class="parent-icon"><i class='bx bx-grid-alt'></i>
+                </div>
+                <div class="menu-title">All Review</div>
             </a>
         </li>
 

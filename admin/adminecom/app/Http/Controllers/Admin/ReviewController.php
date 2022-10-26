@@ -43,4 +43,32 @@ class ReviewController extends Controller
 
         return $result;
     }
+
+    /**
+     * @access private
+     * @routes /all/review
+     * @method GET
+     */
+    public function getAllReview(){
+        $all_data = ProductReview::latest()->paginate(10);
+        return view('backend.review.all_review', compact('all_data'));
+    }
+
+    /**
+     * @access private
+     * @routes /delete/review
+     * @method GET
+     */
+    public function deleteReview($id){
+
+        ProductReview::findOrFail($id)->delete();
+
+        $notification = [
+            'message' => "Review delete successfully",
+            'alert-type' => "success"
+        ];
+
+        return redirect()->back()->with($notification);
+
+    }
 }

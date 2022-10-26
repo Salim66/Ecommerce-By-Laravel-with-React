@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ProductListController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -76,3 +77,7 @@ Route::prefix('products')->group(function(){
 // Contact Message Get
 Route::get('/all/contact', [ContactController::class, 'getAllContact'])->name('all.contact');
 Route::get('/delete/contact/{id}', [ContactController::class, 'deleteContact'])->name('delete.contact');
+
+// All Review Get
+Route::get('/all/review', [ReviewController::class, 'getAllReview'])->name('all.review');
+Route::get('/delete/review/{id}', [ReviewController::class, 'deleteReview'])->name('delete.review');
