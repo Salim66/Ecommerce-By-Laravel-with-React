@@ -35,4 +35,14 @@ class ContactController extends Controller
 
         return $result;
     }
+
+    /**
+     * @access private
+     * @routes /all/contact
+     * @method GET
+     */
+    public function getAllContact(){
+        $all_data = Contact::latest()->paginate(10);
+        return view('backend.contact.all_contact', compact('all_data'));
+    }
 }

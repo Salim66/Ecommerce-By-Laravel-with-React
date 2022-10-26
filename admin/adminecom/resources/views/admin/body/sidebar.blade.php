@@ -72,20 +72,13 @@
             </ul>
         </li>
         <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"> <i class="bx bx-donate-blood"></i>
+            <a href="{{ route('all.contact') }}">
+                <div class="parent-icon"><i class='bx bx-grid-alt'></i>
                 </div>
-                <div class="menu-title">Icons</div>
+                <div class="menu-title">All Contact Message</div>
             </a>
-            <ul>
-                <li> <a href="icons-line-icons.html"><i class="bx bx-right-arrow-alt"></i>Line Icons</a>
-                </li>
-                <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>Boxicons</a>
-                </li>
-                <li> <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>Feather Icons</a>
-                </li>
-            </ul>
         </li>
+
         <li class="menu-label">Forms & Tables</li>
         <li>
             <a class="has-arrow" href="javascript:;">
