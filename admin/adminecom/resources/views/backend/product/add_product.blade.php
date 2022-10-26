@@ -28,17 +28,69 @@
                 <div class="row">
                    <div class="col-lg-8">
                    <div class="border border-3 p-4 rounded">
-                    <div class="mb-3">
+                      <div class="mb-3">
                         <label for="inputProductTitle" class="form-label">Product Title</label>
-                        <input type="email" class="form-control" id="inputProductTitle" placeholder="Enter product title">
+                        <input type="text" name="title" class="form-control" id="inputProductTitle">
                       </div>
                       <div class="mb-3">
-                        <label for="inputProductDescription" class="form-label">Description</label>
+                        <label for="inputProductCode" class="form-label">Product Code</label>
+                        <input type="text" name="product_code" class="form-control" id="inputProductCode">
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Product Thamnail</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            <input type="file" class="form-control" name="image" id="image" />
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-sm-3">
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            <img id="previewImg" src="{{ URL::to('upload/no_image.jpg')  }}" width="110" height="110">
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Image One</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            <input type="file" class="form-control" name="image_one" />
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Image Two</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            <input type="file" class="form-control" name="image_two" />
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Image Three</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            <input type="file" class="form-control" name="image_three" />
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Image Four</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            <input type="file" class="form-control" name="image_four" />
+                        </div>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="inputProductDescription" class="form-label">Short Description</label>
                         <textarea class="form-control" id="inputProductDescription" rows="3"></textarea>
                       </div>
                       <div class="mb-3">
-                        <label for="inputProductDescription" class="form-label">Product Images</label>
-                        <input id="image-uploadify" type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple="" style="display: none;"><div class="imageuploadify well"><div class="imageuploadify-overlay"><i class="fa fa-picture-o"></i></div><div class="imageuploadify-images-list text-center"><i class="bx bxs-cloud-upload"></i><span class="imageuploadify-message">Drag&amp;Drop Your File(s)Here To Upload</span><button type="button" class="btn btn-default">or select file to upload</button></div></div>
+                        <label for="mytextarea" class="form-label">Long Description</label>
+                        <textarea name="long_description" id="mytextarea" name="mytextarea">Hello, World!</textarea>
                       </div>
                     </div>
                    </div>
@@ -47,54 +99,70 @@
                       <div class="row g-3">
                         <div class="col-md-6">
                             <label for="inputPrice" class="form-label">Price</label>
-                            <input type="email" class="form-control" id="inputPrice" placeholder="00.00">
+                            <input type="number" name="price" class="form-control" id="inputPrice">
                           </div>
                           <div class="col-md-6">
-                            <label for="inputCompareatprice" class="form-label">Compare at Price</label>
-                            <input type="password" class="form-control" id="inputCompareatprice" placeholder="00.00">
-                          </div>
-                          <div class="col-md-6">
-                            <label for="inputCostPerPrice" class="form-label">Cost Per Price</label>
-                            <input type="email" class="form-control" id="inputCostPerPrice" placeholder="00.00">
-                          </div>
-                          <div class="col-md-6">
-                            <label for="inputStarPoints" class="form-label">Star Points</label>
-                            <input type="password" class="form-control" id="inputStarPoints" placeholder="00.00">
+                            <label for="inputCompareatprice" class="form-label">Special Price</label>
+                            <input type="number" name="special_price" class="form-control" id="inputCompareatprice">
                           </div>
                           <div class="col-12">
-                            <label for="inputProductType" class="form-label">Product Type</label>
+                            <label for="inputProductType" class="form-label">Category</label>
                             <select class="form-select" id="inputProductType">
-                                <option></option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option>--Select--</option>
+                                @foreach($categories as $category)
+                                <option value="{{ $category->category_name }}">{{ $category->category_name }}</option>
+                                @endforeach
                               </select>
                           </div>
                           <div class="col-12">
-                            <label for="inputVendor" class="form-label">Vendor</label>
-                            <select class="form-select" id="inputVendor">
-                                <option></option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <label for="inputProductType" class="form-label">Sub-Category</label>
+                            <select class="form-select" id="inputProductType">
+                                <option>--Select--</option>
+                                @foreach($subcategories as $scategory)
+                                <option value="{{ $scategory->subcategory_name }}">{{ $scategory->subcategory_name }}</option>
+                                @endforeach
                               </select>
                           </div>
                           <div class="col-12">
-                            <label for="inputCollection" class="form-label">Collection</label>
-                            <select class="form-select" id="inputCollection">
-                                <option></option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <label for="inputVendor" class="form-label">Brand</label>
+                            <select name="brand" class="form-select" id="inputVendor">
+                                <option>--Select--</option>
+                                <option value="Apple">Apple</option>
+                                <option value="Tony">Tony</option>
+                                <option value="OPPO">OPPO</option>
+                                <option value="WALTON">WALTON</option>
+                                <option value="MOTROLA">MOTROLA</option>
+                                <option value="Nokia">Nokia</option>
+                                <option value="Canon">Canon</option>
+                                <option value="Top Ten">Top Ten</option>
+                                <option value="SpaceWood">SpaceWood</option>
                               </select>
                           </div>
                           <div class="col-12">
-                            <label for="inputProductTags" class="form-label">Product Tags</label>
-                            <input type="text" class="form-control" id="inputProductTags" placeholder="Enter Product Tags">
+                            <label for="inputCollection" class="form-label">Size</label>
+                            <input type="text" name="size" class="form-control" data-role="tagsinput" value="S,M,L,XL">
+                          </div>
+                          <div class="col-12">
+                            <label for="inputCollection" class="form-label">Color</label>
+                            <input type="text" name="color" class="form-control" data-role="tagsinput" value="Red,Green,Black">
+                          </div>
+                          <div class="col-12">
+                            <div class="form-check">
+                                <input name="remark" class="form-check-input" type="checkbox" value="" id="FEATURED">
+                                <label class="form-check-label" for="FEATURED">FEATURED</label>
+                            </div>
+                            <div class="form-check">
+                                <input name="remark" class="form-check-input" type="checkbox" value="" id="NEW">
+                                <label class="form-check-label" for="NEW">NEW</label>
+                            </div>
+                            <div class="form-check">
+                                <input name="remark" class="form-check-input" type="checkbox" value="" id="COLLECTION">
+                                <label class="form-check-label" for="COLLECTION">COLLECTION</label>
+                            </div>
                           </div>
                           <div class="col-12">
                               <div class="d-grid">
-                                 <button type="button" class="btn btn-primary">Save Product</button>
+                                 <button type="submit" class="btn btn-primary">Add new</button>
                               </div>
                           </div>
                       </div>
@@ -115,6 +183,13 @@
             }
             reader.readAsDataURL(e.target.files[0]);
         });
+    });
+</script>
+<script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+</script>
+<script>
+    tinymce.init({
+      selector: '#mytextarea'
     });
 </script>
 @endsection

@@ -12,6 +12,8 @@
 	<link href="{{ asset('backend/assets') }}/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
 	<link href="{{ asset('backend/assets') }}/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
 	<link href="{{ asset('backend/assets') }}/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+    <link href="{{ asset('backend/assets') }}/plugins/input-tags/css/tagsinput.css" rel="stylesheet" />
+
 	<!-- loader-->
 	<link href="{{ asset('backend/assets') }}/css/pace.min.css" rel="stylesheet" />
 	<script src="{{ asset('backend/assets') }}/js/pace.min.js"></script>
@@ -62,6 +64,7 @@
 	<script src="{{ asset('backend/assets') }}/plugins/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="{{ asset('backend/assets') }}/plugins/sparkline-charts/jquery.sparkline.min.js"></script>
 	<script src="{{ asset('backend/assets') }}/plugins/jquery-knob/excanvas.js"></script>
+    <script src="{{ asset('backend/assets') }}/plugins/input-tags/js/tagsinput.js"></script>
 	<script src="{{ asset('backend/assets') }}/plugins/jquery-knob/jquery.knob.js"></script>
 	  <script>
 		  $(function() {
