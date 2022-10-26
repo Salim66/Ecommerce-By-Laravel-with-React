@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\ProductDetails;
 use App\Models\ProductList;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
@@ -108,7 +109,7 @@ class ProductListController extends Controller
         if($request->hasFile('image')){
             $image = $request->file('image');
             $img_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(128, 128)->save('upload/product/'.$img_gen);
+            Image::make($image)->resize(350, 600)->save('upload/product/'.$img_gen);
             $save_url = 'http://localhost:8000/upload/product/'.$img_gen;
         }
 
@@ -124,12 +125,54 @@ class ProductListController extends Controller
             'image' => $save_url
         ]);
 
+        ///////////////// Product Details ////////////////
+        $save_url1 = '';
+        if($request->hasFile('image_one')){
+            $image1 = $request->file('image_one');
+            $img_gen1 = hexdec(uniqid()).'.'.$image1->getClientOriginalExtension();
+            Image::make($image1)->resize(350, 600)->save('upload/productdetails/'.$img_gen1);
+            $save_url1 = 'http://localhost:8000/upload/productdetails/'.$img_gen1;
+        }
+        $save_url2 = '';
+        if($request->hasFile('image_two')){
+            $image2 = $request->file('image_two');
+            $img_gen2 = hexdec(uniqid()).'.'.$image2->getClientOriginalExtension();
+            Image::make($image2)->resize(350, 600)->save('upload/productdetails/'.$img_gen2);
+            $save_url2 = 'http://localhost:8000/upload/productdetails/'.$img_gen2;
+        }
+        $save_url3 = '';
+        if($request->hasFile('image_three')){
+            $image3 = $request->file('image_three');
+            $img_gen3 = hexdec(uniqid()).'.'.$image3->getClientOriginalExtension();
+            Image::make($image3)->resize(350, 600)->save('upload/productdetails/'.$img_gen3);
+            $save_url3 = 'http://localhost:8000/upload/productdetails/'.$img_gen3;
+        }
+        $save_url4 = '';
+        if($request->hasFile('image_four')){
+            $image4 = $request->file('image_four');
+            $img_gen4 = hexdec(uniqid()).'.'.$image4->getClientOriginalExtension();
+            Image::make($image4)->resize(350, 600)->save('upload/productdetails/'.$img_gen4);
+            $save_url4 = 'http://localhost:8000/upload/productdetails/'.$img_gen4;
+        }
+
+        ProductDetails::create([
+            'product_id' => $product_id,
+            'image_one' => $save_url1,
+            'image_two' => $save_url2,
+            'image_three' => $save_url3,
+            'image_four' => $save_url4,
+            'short_description' => $request->short_description,
+            'size' => $request->size,
+            'color' => $request->color,
+            'long_description' => $request->long_description
+        ]);
+
         $notification = [
-            'message' => "Category added successfully",
+            'message' => "Product added successfully",
             'alert-type' => "success"
         ];
 
-        return redirect()->route('get.all.category')->with($notification);
+        return redirect()->route('get.all.product')->with($notification);
     }
 
     /**

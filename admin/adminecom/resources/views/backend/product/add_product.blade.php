@@ -150,15 +150,15 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-check">
-                                        <input name="remark" class="form-check-input" type="checkbox" value="" id="FEATURED">
+                                        <input name="remark" class="form-check-input" type="checkbox" value="FEATURED" id="FEATURED">
                                         <label class="form-check-label" for="FEATURED">FEATURED</label>
                                     </div>
                                     <div class="form-check">
-                                        <input name="remark" class="form-check-input" type="checkbox" value="" id="NEW">
+                                        <input name="remark" class="form-check-input" type="checkbox" value="NEW" id="NEW">
                                         <label class="form-check-label" for="NEW">NEW</label>
                                     </div>
                                     <div class="form-check">
-                                        <input name="remark" class="form-check-input" type="checkbox" value="" id="COLLECTION">
+                                        <input name="remark" class="form-check-input" type="checkbox" value="COLLECTION" id="COLLECTION">
                                         <label class="form-check-label" for="COLLECTION">COLLECTION</label>
                                     </div>
                                 </div>
