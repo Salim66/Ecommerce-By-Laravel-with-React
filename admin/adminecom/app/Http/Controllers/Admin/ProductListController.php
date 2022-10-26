@@ -177,12 +177,15 @@ class ProductListController extends Controller
 
     /**
      * @access private
-     * @routes /categories/edit/category/{id}
+     * @routes /products/edit/product/{id}
      * @method GET
      */
-    public function editCategory($id){
-        $data = Category::findOrFail($id);
-        return view('backend.category.edit_category', compact('data'));
+    public function editProduct($id){
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+        $subcategories = Subcategory::orderBy('subcategory_name', 'ASC')->get();
+        $data = ProductList::findOrFail($id);
+        $data_details = ProductDetails::where('product_id', $id)->first();
+        return view('backend.product.edit_product', compact('categories', 'subcategories', 'data', 'data_details'));
     }
 
     /**
