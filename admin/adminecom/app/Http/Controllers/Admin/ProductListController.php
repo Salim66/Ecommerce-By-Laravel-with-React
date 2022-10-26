@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\ProductList;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
+use Image;
 
 class ProductListController extends Controller
 {
@@ -93,27 +94,34 @@ class ProductListController extends Controller
 
     /**
      * @access private
-     * @routes /categories/store/category
+     * @routes /products/store/product
      * @method POST
      */
-    public function storeCategory(Request $request){
+    public function storeProduct(Request $request){
         $this->validate($request, [
-            'category_name' => 'required'
+            'product_code' => 'required'
         ],[
-            'category_name.required' => 'Please insert category name'
+            'product_code.required' => 'Please insert product code'
         ]);
 
         $save_url = '';
-        if($request->hasFile('category_image')){
-            $image = $request->file('category_image');
+        if($request->hasFile('image')){
+            $image = $request->file('image');
             $img_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(128, 128)->save('upload/category/'.$img_gen);
-            $save_url = 'http://localhost:8000/upload/category/'.$img_gen;
+            Image::make($image)->resize(128, 128)->save('upload/product/'.$img_gen);
+            $save_url = 'http://localhost:8000/upload/product/'.$img_gen;
         }
 
-        Category::create([
-            'category_name' => $request->category_name,
-            'category_image' => $save_url
+        $product_id = ProductList::insertGetId([
+            'title' => $request->title,
+            'price' => $request->price,
+            'special_price' => $request->special_price,
+            'category' => $request->category,
+            'subcategory' => $request->subcategory,
+            'remark' => $request->remark,
+            'brand' => $request->brand,
+            'product_code' => $request->product_code,
+            'image' => $save_url
         ]);
 
         $notification = [
