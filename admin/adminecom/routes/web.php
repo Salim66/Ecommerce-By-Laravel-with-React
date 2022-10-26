@@ -75,3 +75,4 @@ Route::prefix('products')->group(function(){
 
 // Contact Message Get
 Route::get('/all/contact', [ContactController::class, 'getAllContact'])->name('all.contact');
+Route::get('/delete/contact/{id}', [ContactController::class, 'deleteContact'])->name('delete.contact');

@@ -45,4 +45,22 @@ class ContactController extends Controller
         $all_data = Contact::latest()->paginate(10);
         return view('backend.contact.all_contact', compact('all_data'));
     }
+
+    /**
+     * @access private
+     * @routes /delete/contact
+     * @method GET
+     */
+    public function deleteContact($id){
+
+        Contact::findOrFail($id)->delete();
+
+        $notification = [
+            'message' => "Contact delete successfully",
+            'alert-type' => "success"
+        ];
+
+        return redirect()->back()->with($notification);
+
+    }
 }

@@ -53,7 +53,7 @@
                                                 <td>{{ $data->message }}</td>
                                                 <td>{{ $data->contact_date }}</td>
                                                 <td>
-                                                    <a href="{{ route('delete.category', $data->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                                                    <a href="{{ route('delete.contact', $data->id) }}" class="btn btn-danger" id="delete">Delete</a>
                                                 </td>
                                             </tr>
                                             @endforeach
