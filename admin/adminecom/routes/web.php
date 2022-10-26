@@ -85,4 +85,4 @@ Route::get('/delete/review/{id}', [ReviewController::class, 'deleteReview'])->na
 
 // Site Inof
 Route::get('/site/info', [SiteInfoController::class, 'editSiteInfo'])->name('site.info');
-Route::get('/delete/review/{id}', [ReviewController::class, 'deleteReview'])->name('delete.review');
+Route::post('/update/review', [SiteInfoController::class, 'updateReview'])->name('siteinfo.update');

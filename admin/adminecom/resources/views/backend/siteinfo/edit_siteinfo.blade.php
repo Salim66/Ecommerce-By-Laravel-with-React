@@ -22,9 +22,9 @@
             <div class="main-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="{{ route('change.password.update') }}" method="POST">
+                        <form action="{{ route('siteinfo.update') }}" method="POST">
                             @csrf
-
+                            <input type="hidden" name="id" value="{{ $data->id }}">
                             <div class="card">
                                 <div class="card-body">
 
@@ -120,7 +120,7 @@
                                     <div class="row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
+                                            <input type="submit" class="btn btn-primary px-4" value="Update" />
                                         </div>
                                     </div>
                                 </div>
