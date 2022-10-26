@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\ProductList;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
 class ProductListController extends Controller
@@ -80,11 +82,13 @@ class ProductListController extends Controller
 
     /**
      * @access private
-     * @routes /categories/add/category
+     * @routes /products/add/product
      * @method GET
      */
-    public function addCategory(){
-        return view('backend.category.add_category');
+    public function addProduct(){
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+        $subcategories = Subcategory::orderBy('subcategory_name', 'ASC')->get();
+        return view('backend.product.add_product', compact('categories', 'subcategories'));
     }
 
     /**
