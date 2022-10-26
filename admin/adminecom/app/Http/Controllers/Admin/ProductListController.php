@@ -286,15 +286,16 @@ class ProductListController extends Controller
 
     /**
      * @access private
-     * @routes /categories/delete/category/{id}
+     * @routes /products/delete/product/{id}
      * @method GET
      */
-    public function deleteCategory($id){
+    public function deleteProduct($id){
 
-        Category::findOrFail($id)->delete();
+        ProductList::findOrFail($id)->delete();
+        ProductDetails::where('product_id', $id)->delete();
 
         $notification = [
-            'message' => "Category delete successfully",
+            'message' => "Product delete successfully",
             'alert-type' => "success"
         ];
 
