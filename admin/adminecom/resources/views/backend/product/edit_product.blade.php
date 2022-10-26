@@ -28,6 +28,7 @@
                 <form action="{{ route('update.product', $data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    <input type="hidden" name="detials_id" value="{{ $data_details->id }}">
                     <div class="row">
                         <div class="col-lg-8">
                         <div class="border border-3 p-4 rounded">
@@ -165,7 +166,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary">Add new</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </div>
                             </div>
