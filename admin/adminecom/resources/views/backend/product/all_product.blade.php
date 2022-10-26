@@ -65,6 +65,7 @@
                                 </div>
                             </div>
                         </div>
+                        {{ $all_data->links('vendor.pagination.custom') }}
                     </div>
                 </div>
             </div>
