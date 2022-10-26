@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -80,4 +81,8 @@ Route::get('/delete/contact/{id}', [ContactController::class, 'deleteContact'])-
 
 // All Review Get
 Route::get('/all/review', [ReviewController::class, 'getAllReview'])->name('all.review');
+Route::get('/delete/review/{id}', [ReviewController::class, 'deleteReview'])->name('delete.review');
+
+// Site Inof
+Route::get('/site/info', [SiteInfoController::class, 'editSiteInfo'])->name('site.info');
 Route::get('/delete/review/{id}', [ReviewController::class, 'deleteReview'])->name('delete.review');

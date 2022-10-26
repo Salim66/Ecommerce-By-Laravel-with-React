@@ -18,4 +18,14 @@ class SiteInfoController extends Controller
         $result = SiteInfo::all();
         return $result;
     }
+
+    /**
+     * @access private
+     * @routes /site-info
+     * @method GET
+     */
+    public function editSiteInfo(){
+        $data = SiteInfo::findOrFail(1);
+        return view('backend.siteinfo.edit_siteinfo', compact('data'));
+    }
 }
