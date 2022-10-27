@@ -186,7 +186,7 @@ class ProductCartController extends Controller
 
     ///////////////////// backend product cart order manage /////////////////////
 
-       /**
+    /**
      * @access private
      * @routes /pending/orders
      * @method GET
@@ -194,5 +194,25 @@ class ProductCartController extends Controller
     public function perndingOrders(){
         $all_data = CartOrder::where('order_status', 'Pending')->orderBy('id', 'desc')->paginate(10);
         return view('backend.order.pending_order', compact('all_data'));
+    }
+
+    /**
+     * @access private
+     * @routes /processing/orders
+     * @method GET
+     */
+    public function processingOrders(){
+        $all_data = CartOrder::where('order_status', 'Processing')->orderBy('id', 'desc')->paginate(10);
+        return view('backend.order.processing_order', compact('all_data'));
+    }
+
+    /**
+     * @access private
+     * @routes /complete/orders
+     * @method GET
+     */
+    public function completeOrders(){
+        $all_data = CartOrder::where('order_status', 'Complete')->orderBy('id', 'desc')->paginate(10);
+        return view('backend.order.complete_order', compact('all_data'));
     }
 }
