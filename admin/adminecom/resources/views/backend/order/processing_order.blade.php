@@ -57,7 +57,7 @@
                                                     <td>{{ $data->order_date }}</td>
                                                     <td class="text-danger">{{ $data->order_status }}</td>
                                                     <td>
-                                                        <a href="{{ route('delete.contact', $data->id) }}" class="btn btn-danger" id="delete">Details</a>
+                                                        <a href="{{ route('order.details', $data->id) }}" class="btn btn-danger">Details</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

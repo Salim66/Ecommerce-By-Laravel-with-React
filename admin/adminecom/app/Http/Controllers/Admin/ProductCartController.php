@@ -225,4 +225,31 @@ class ProductCartController extends Controller
         $data = CartOrder::findOrFail($id);
         return view('backend.order.order_details', compact('data'));
     }
+
+    public function pendingProcessing($id){
+
+        CartOrder::findOrFail($id)->update(['order_status' => 'Processing']);
+
+        $notification = array(
+            'message' => 'Order Processing Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('pending.orders')->with($notification);
+
+    } // End Method
+
+
+    public function processingComplete($id){
+
+        CartOrder::findOrFail($id)->update(['order_status' => 'Complete']);
+
+        $notification = array(
+            'message' => 'Order Complete Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('processing.orders')->with($notification);
+
+    } // End Method
 }

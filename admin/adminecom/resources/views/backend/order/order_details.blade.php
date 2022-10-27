@@ -45,9 +45,9 @@
                             <li class="list-group-item"><strong class="text-dark">Order Status: </strong> <span style="border-radius: 6px;" class="py-1 px-2 text-white bg-danger">{{ $data->order_status }}</span></li>
 
                             @if($data->order_status == "Pending")
-                                <a href="" class="btn btn-success d-block">Processing Order</a>
+                                <a href="{{ route('pending.processing', $data->id) }}" class="btn btn-success d-block">Processing Order</a>
                                 @elseif($data->order_status == "Processing")
-                                <a href="" class="btn btn-success d-block">Complete Order</a>
+                                <a href="{{ route('processing.complete', $data->id) }}" class="btn btn-success d-block">Complete Order</a>
                             @endif
 
                         </ul>
