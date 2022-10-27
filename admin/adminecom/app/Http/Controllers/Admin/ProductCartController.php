@@ -215,4 +215,14 @@ class ProductCartController extends Controller
         $all_data = CartOrder::where('order_status', 'Complete')->orderBy('id', 'desc')->paginate(10);
         return view('backend.order.complete_order', compact('all_data'));
     }
+
+    /**
+     * @access private
+     * @routes /details/{id}
+     * @method GET
+     */
+    public function orderDetails($id){
+        $data = CartOrder::findOrFail($id);
+        return view('backend.order.order_details', compact('data'));
+    }
 }

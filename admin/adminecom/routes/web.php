@@ -91,6 +91,7 @@ Route::post('/update/review', [SiteInfoController::class, 'updateReview'])->name
 // orders
 Route::prefix('orders')->group(function(){
     Route::get('/pending/orders', [ProductCartController::class, 'perndingOrders'])->name('pending.orders');
+    Route::get('/details/{id}', [ProductCartController::class, 'orderDetails'])->name('order.details');
     Route::get('/processing/orders', [ProductCartController::class, 'processingOrders'])->name('processing.orders');
     Route::get('/complete/orders', [ProductCartController::class, 'completeOrders'])->name('complete.orders');
 });
