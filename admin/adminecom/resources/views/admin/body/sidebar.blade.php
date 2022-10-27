@@ -18,7 +18,7 @@
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
-        <li class="menu-label">UI Elements</li>
+        <li class="menu-label">Manage Site</li>
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-cart'></i>
@@ -93,13 +93,21 @@
             </a>
         </li>
 
-        <li class="menu-label">Forms & Tables</li>
+        <li class="menu-label">Manage Order</li>
         <li>
-            <a href="https://themeforest.net/user/codervent" target="_blank">
-                <div class="parent-icon"><i class="bx bx-support"></i>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-repeat'></i>
                 </div>
-                <div class="menu-title">Support</div>
+                <div class="menu-title">Orders</div>
             </a>
+            <ul>
+                <li> <a href="{{ route('pending.orders') }}"><i class="bx bx-right-arrow-alt"></i>Pending Order</a>
+                </li>
+                <li> <a href="{{ route('pending.orders') }}"><i class="bx bx-right-arrow-alt"></i>Processing Order</a>
+                </li>
+                <li> <a href="{{ route('pending.orders') }}"><i class="bx bx-right-arrow-alt"></i>Complete Order</a>
+                </li>
+            </ul>
         </li>
     </ul>
     <!--end navigation-->

@@ -183,4 +183,16 @@ class ProductCartController extends Controller
         $result = CartOrder::where('email', $email)->orderBy('id', 'desc')->get();
         return $result;
     }
+
+    ///////////////////// backend product cart order manage /////////////////////
+
+       /**
+     * @access private
+     * @routes /pending/orders
+     * @method GET
+     */
+    public function perndingOrders(){
+        $all_data = CartOrder::where('order_status', 'Pending')->orderBy('id', 'desc')->paginate(10);
+        return view('backend.order.pending_order', compact('all_data'));
+    }
 }

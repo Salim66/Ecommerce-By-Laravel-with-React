@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\ProductCartController;
 use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SiteInfoController;
@@ -86,3 +87,8 @@ Route::get('/delete/review/{id}', [ReviewController::class, 'deleteReview'])->na
 // Site Inof
 Route::get('/site/info', [SiteInfoController::class, 'editSiteInfo'])->name('site.info');
 Route::post('/update/review', [SiteInfoController::class, 'updateReview'])->name('siteinfo.update');
+
+// orders
+Route::prefix('orders')->group(function(){
+    Route::get('/pending/orders', [ProductCartController::class, 'perndingOrders'])->name('pending.orders');
+});
